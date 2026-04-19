@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Instagram, Mail, Globe } from "lucide-react";
-import { journalPosts } from "@/lib/jurnal-data";
+import { journalPosts, type JournalPost } from "@/lib/jurnal-data";
 
 export default function JournalDetail() {
   const params = useParams();
-  const post = journalPosts.find((p) => p.id === params.id);
+  const post: JournalPost | undefined = journalPosts.find((p) => p.id === params.id);
 
   if (!post) {
     return (
