@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   keywords: ["Luxury Indonesian Furniture", "High-end Teak", "Modern Heritage Woodwork", "Bespoke Furniture Jakarta", "Architectural Woodwork"],
 };
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,8 +32,11 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-inter selection:bg-slate-900 selection:text-white">
+      <body className="min-h-full font-inter selection:bg-charcoal selection:text-bone bg-bone relative overflow-x-hidden">
+        <div className="noise-overlay pointer-events-none" />
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

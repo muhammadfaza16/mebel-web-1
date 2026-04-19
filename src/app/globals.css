@@ -24,6 +24,14 @@
 
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-inter);
+
+  /* Golden Ratio Typography Scale */
+  --font-size-gr-1: 0.618rem;
+  --font-size-gr-2: 1rem;
+  --font-size-gr-3: 1.618rem;
+  --font-size-gr-4: 2.618rem;
+  --font-size-gr-5: 4.236rem;
+  --font-size-gr-6: 6.854rem;
 }
 
 :root {
@@ -45,7 +53,7 @@
   h2 { font-family: var(--font-serif); font-size: 4.236rem; line-height: 1.1; @apply font-medium; }
   h3 { font-family: var(--font-serif); font-size: 2.618rem; line-height: 1.2; @apply font-medium; }
   h4 { font-family: var(--font-serif); font-size: 1.618rem; line-height: 1.3; @apply font-medium; }
-  p { font-size: 1rem; line-height: 1.618; @apply opacity-80; }
+  p { font-size: 1rem; line-height: 1.618; @apply opacity-90; }
 
   @media (max-width: 768px) {
     h1 { font-size: 3.5rem; }

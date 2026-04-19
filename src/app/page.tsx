@@ -1,89 +1,28 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
-import { ArrowUpRight, Menu, X, Hammer, Sparkles, MoveRight, Mail, Instagram, Globe } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { ArrowUpRight, MoveRight } from "lucide-react";
+import { useRef } from "react";
 
 export default function Home() {
-  const containerRef = useRef(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const containerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  const journalPosts = [
+    { title: "Psikologi Material Kayu dalam Hunian Modern", date: "20 APR 2026", category: "GAYA HIDUP", image: "/assets/journal-1.png" },
+    { title: "Menelusuri Jati Berkelanjutan di Jawa Tengah", date: "15 MAR 2026", category: "WARISAN", image: "/assets/journal-2.png" },
+    { title: "Koleksi Pilihan Kurator 2026", date: "02 FEB 2026", category: "KURASI", image: "/assets/journal-3.png" },
+  ];
+
   return (
-    <main ref={containerRef} className="relative bg-bone selection:bg-charcoal selection:text-bone scroll-smooth overflow-x-hidden">
-      <div className="noise-overlay" />
-
-      {/* Full-screen Menu Overlay */}
-      <motion.div 
-        initial={false}
-        animate={isOpen ? { x: 0 } : { x: "100%" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-[100] bg-charcoal text-bone flex flex-col p-gr-6 lg:p-gr-8"
-      >
-        <div className="flex justify-between items-center mb-gr-8">
-           <h1 className="text-gr-4 font-serif font-medium tracking-tighter text-white">KAYU MODERN</h1>
-           <button 
-            onClick={() => setIsOpen(false)}
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-charcoal transition-all cursor-pointer"
-           >
-              <X size={18} />
-           </button>
-        </div>
-        
-        <nav className="flex-1 flex flex-col justify-center gap-gr-4">
-           {['Koleksi', 'Studio', 'Material', 'Jurnal', 'Kontak'].map((link, i) => (
-             <motion.div 
-              key={link}
-              initial={{ opacity: 0, x: 20 }}
-              animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-              transition={{ delay: 0.3 + (i * 0.1) }}
-              className="group cursor-pointer overflow-hidden"
-             >
-                <span className="text-[0.55rem] tracking-[0.5em] text-gold-muted block mb-2">0{i+1}</span>
-                <span className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-tighter hover:italic hover:pl-gr-4 transition-all duration-500 block">{link}</span>
-             </motion.div>
-           ))}
-        </nav>
-        
-        <div className="pt-gr-6 border-t border-white/5 flex justify-between items-end">
-           <p className="text-[0.6rem] tracking-[0.4em] opacity-40 uppercase">Instagram / LinkedIn / Pinterest</p>
-           <p className="text-[0.6rem] tracking-[0.4em] opacity-40 uppercase">© 2026</p>
-        </div>
-      </motion.div>
+    <main ref={containerRef} className="relative bg-transparent selection:bg-charcoal selection:text-bone scroll-smooth">
       
-      {/* Navigation - Enhanced Contrast & Balance */}
-      <nav className={`fixed top-0 left-0 w-full z-50 px-gr-5 py-gr-4 flex justify-between items-center transition-all duration-700 ${
-        scrolled ? "sticky-nav-scrolled py-gr-3" : "mix-blend-difference text-white py-gr-4"
-      }`}>
-        <h1 className="text-gr-4 font-serif font-medium tracking-tighter m-0">KAYU MODERN</h1>
-        <div className="flex gap-gr-6 items-center text-[0.6rem] tracking-[0.3em] font-bold uppercase transition-all">
-          <span className="hidden md:inline cursor-pointer hover:text-gold-muted transition-colors">Koleksi</span>
-          <span className="hidden md:inline cursor-pointer hover:text-gold-muted transition-colors">Studio</span>
-          <button 
-            onClick={() => setIsOpen(true)}
-            className={`w-10 h-10 rounded-full border flex items-center justify-center hover:bg-charcoal hover:text-white transition-all cursor-pointer ${
-              scrolled ? "border-charcoal/10" : "border-white/20"
-            }`}
-          >
-            <Menu size={18} />
-          </button>
-        </div>
-      </nav>
-
       {/* 1. Cinematic Hero - Movement: Scale & Reveal */}
       <section className="relative h-screen flex flex-col justify-end items-start overflow-hidden">
         <motion.div 
@@ -99,10 +38,10 @@ export default function Home() {
             priority
             className="object-cover brightness-[0.85]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-        
-        <div className="relative z-10 px-gr-5 pb-gr-6 w-full max-w-7xl flex justify-between items-end">
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-gr-5 pb-gr-6 mb-gr-4 flex justify-between items-end">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -113,7 +52,7 @@ export default function Home() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-white mb-gr-4 max-w-4xl leading-[0.9] uppercase"
+              className="text-white mb-gr-4 max-w-4xl leading-[0.9] uppercase font-serif"
             >
               KEINDAHAN <br /> YANG <br /> MENGAKAR.
             </motion.h1>
@@ -123,26 +62,30 @@ export default function Home() {
               transition={{ delay: 1.2 }}
               className="flex flex-col md:flex-row gap-gr-4 items-start md:items-center"
             >
-              <p className="text-white/90 text-gr-2 font-medium tracking-wide max-w-md">
+              <p className="text-white text-gr-2 font-medium tracking-wide max-w-md">
                 Meleburkan tradisi pertukangan Nusantara dengan presisi arsitektural modern. Jati berkelanjutan untuk hunian yang bernapas.
               </p>
               <div className="flex-1 h-[1px] bg-white/20 hidden md:block" />
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-white/40 text-[0.6rem] tracking-[0.4em] flex items-center gap-gr-2 uppercase font-bold"
-              >
-                GULIR <MoveRight size={14} />
-              </motion.div>
+              <Link href="/koleksi" className="group flex items-center gap-gr-2 text-gold-muted hover:text-white transition-all text-[0.6rem] tracking-[0.4em] uppercase font-bold">
+                 Jelajahi <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
             </motion.div>
           </motion.div>
 
-          {/* Balance element: Right-aligned establishment mark */}
           <div className="hidden lg:flex flex-col items-end gap-gr-2 text-white/20 border-r border-white/10 pr-gr-4 mb-gr-4 select-none">
              <span className="text-[0.6rem] tracking-[0.8em] font-bold uppercase rotate-90 origin-right translate-x-7 translate-y-12">ESTABLISHED</span>
              <span className="text-gr-5 font-serif leading-none italic">1986</span>
           </div>
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute left-gr-5 bottom-gr-4 flex items-center gap-gr-3 text-[0.5rem] tracking-[1em] text-white/30 uppercase vertical-text"
+        >
+          GULIR <div className="h-20 w-[1px] bg-white/20 animate-scroll-line" />
+        </motion.div>
       </section>
 
       {/* 2. Heritage Statement - Variety: Offset Layout */}
@@ -156,7 +99,7 @@ export default function Home() {
             className="flex-1"
           >
             <h2 className="text-earth-deep mb-gr-4 leading-[1.1] uppercase">EMPAT DEKADE <br /> MENJAGA RASA.</h2>
-            <p className="text-justify-phi font-medium opacity-60">
+            <p className="text-justify-phi font-medium opacity-80">
               BERDIRI SEJAK 1986 — PERJALANAN KAMI BERMULA DARI JANTUNG JAWA TENGAH, DI MANA SETIAP BIBIT JATI DIPILIH BUKAN KARENA UKURANNYA, MELAINKAN KARENA JIWANYA. HINGGA HARI INI, KAMI TERUS MENJAGA WARISAN INI DENGAN MEMADUKAN TEKNIK SAMBUNGAN KLASIK DAN GARIS DESAIN MODERN YANG BERSIH.
             </p>
           </motion.div>
@@ -170,7 +113,7 @@ export default function Home() {
              <div className="border-l-2 border-terracotta-accent pl-gr-4">
                 <p className="text-[0.6rem] font-bold tracking-[0.3em] text-terracotta-accent mb-2 uppercase italic">Filosofi Kami</p>
                 <p className="text-lg text-earth-deep/80 leading-relaxed font-serif">
-                  Kami percaya setiap keping kayu membawa ingatan. Misi kami adalah mengabadikan ingatan tersebut melalui rekayasa presisi dan sentuhan akhir alami.
+                   Kami percaya setiap keping kayu membawa ingatan. Misi kami adalah mengabadikan ingatan tersebut melalui rekayasa presisi dan sentuhan akhir alami.
                 </p>
              </div>
           </motion.div>
@@ -187,7 +130,7 @@ export default function Home() {
             className="flex justify-between items-end mb-gr-7"
           >
             <h2 className="text-white font-serif leading-none uppercase">Koleksi Kurasi.</h2>
-            <span className="text-[0.6rem] tracking-[0.4em] opacity-40 uppercase font-bold">Pilih Garis Keturunan Anda</span>
+            <span className="text-[0.6rem] tracking-[0.4em] opacity-70 uppercase font-bold">Pilih Garis Keturunan Anda</span>
           </motion.div>
           
           <motion.div 
@@ -236,13 +179,14 @@ export default function Home() {
           </motion.div>
 
           <div className="mt-gr-7 text-left block w-full">
-             <motion.button 
+             <motion.div 
                 animate={{ x: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="group inline-flex items-center gap-gr-4 text-[0.6rem] font-bold tracking-[0.6em] uppercase hover:text-gold-muted transition-all bg-transparent px-gr-4 py-gr-2 border border-white/20 hover:border-white/40 cursor-pointer"
              >
-                LIHAT KOLEKSI <MoveRight size={18} className="group-hover:translate-x-2 transition-transform" />
-             </motion.button>
+                <Link href="/koleksi" className="group inline-flex items-center gap-gr-4 text-[0.6rem] font-bold tracking-[0.6em] uppercase hover:text-gold-muted transition-all bg-transparent px-gr-4 py-gr-2 border border-white/20 hover:border-white/40 cursor-pointer">
+                   LIHAT KOLEKSI <MoveRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                </Link>
+             </motion.div>
           </div>
         </div>
       </section>
@@ -250,7 +194,7 @@ export default function Home() {
       {/* 4. Material Library - Pattern: Horizontal Repeat */}
       <section className="py-gr-6 px-gr-5 bg-bone relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gr-1 border-y border-earth-deep/10">
-           {['JATI', 'TREMBESI', 'MAHONI'].map((wood, i) => (
+            {['JATI', 'TREMBESI', 'MAHONI'].map((wood, i) => (
              <motion.div 
                key={i} 
                initial={{ opacity: 0 }}
@@ -259,10 +203,10 @@ export default function Home() {
                transition={{ delay: i * 0.2 }}
                className="group py-gr-6 px-gr-4 flex flex-col items-center text-center hover:bg-white hover:shadow-2xl transition-all duration-700 cursor-crosshair border-x border-transparent hover:border-bone/50"
              >
-                <p className="text-[0.5rem] tracking-[0.8em] mb-gr-4 opacity-40 font-bold uppercase group-hover:text-terracotta-accent transition-colors">Species {i+1}</p>
+                <p className="text-[0.5rem] tracking-[0.8em] mb-gr-4 opacity-60 font-bold uppercase group-hover:text-terracotta-accent transition-colors">Species {i+1}</p>
                 <h4 className="text-gr-5 mb-gr-1 group-hover:tracking-[0.2em] transition-all duration-1000 uppercase font-serif">{wood}</h4>
-                <div className="w-12 h-[1px] bg-earth-deep group-hover:w-full transition-all duration-700 opacity-20" />
-                <p className="mt-gr-4 text-[0.65rem] tracking-[0.2em] uppercase font-bold leading-loose opacity-60 group-hover:opacity-100 transition-opacity">Kepadatan tinggi, alur serat organik, ketahanan cuaca tak lekang waktu.</p>
+                <div className="w-12 h-[1px] bg-earth-deep group-hover:w-full transition-all duration-700 opacity-40" />
+                <p className="mt-gr-4 text-[0.65rem] tracking-[0.2em] uppercase font-bold leading-loose opacity-70 group-hover:opacity-100 transition-opacity">Kepadatan tinggi, alur serat organik, ketahanan cuaca tak lekang waktu.</p>
              </motion.div>
            ))}
         </div>
@@ -283,10 +227,10 @@ export default function Home() {
             className="max-w-2xl"
           >
             <h2 className="mb-gr-4 italic font-serif uppercase tracking-tighter leading-[0.95]">&quot;PRESISI ADALAH <br /> SATU-SATUNYA <br /> ORNAMEN KAMI.&quot;</h2>
-            <p className="text-lg tracking-tight font-medium opacity-80 mb-gr-4">Studio kami di Jepara menggunakan standar arsitektural untuk memastikan setiap sambungan adalah mahakarya rekayasa.</p>
-            <button className="px-gr-5 py-gr-3 border border-charcoal/10 text-[0.6rem] font-bold tracking-[0.5em] flex items-center gap-gr-3 hover:bg-charcoal hover:text-bone hover:border-charcoal transition-all uppercase">
+            <p className="text-lg tracking-tight font-medium opacity-100 mb-gr-4">Studio kami di Jepara menggunakan standar arsitektural untuk memastikan setiap sambungan adalah mahakarya rekayasa.</p>
+            <Link href="/studio" className="px-gr-5 py-gr-3 border border-charcoal/10 text-[0.6rem] font-bold tracking-[0.5em] inline-flex items-center gap-gr-3 hover:bg-charcoal hover:text-bone hover:border-charcoal transition-all uppercase">
                LIHAT BENGKEL KERJA <MoveRight size={16} />
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -308,8 +252,8 @@ export default function Home() {
               Kami berkolaborasi dengan arsitek dan desainer interior global produsen solusi furnitur khusus bagi ruang residensial dan komersial kelas atas yang menjunjung tinggi keaslian material.
             </p>
             <div className="flex flex-col sm:flex-row gap-gr-4">
-               <button className="bg-charcoal text-bone px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold uppercase hover:bg-earth-deep transition-all shadow-xl">Konsultasi Proyek</button>
-               <button className="border border-charcoal/20 px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold hover:bg-charcoal hover:text-bone transition-all uppercase">Portofolio Desainer</button>
+               <Link href="/kontak" className="bg-charcoal text-bone px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold uppercase hover:bg-earth-deep transition-all shadow-xl text-center">Konsultasi Proyek</Link>
+               <Link href="/portofolio-desainer" className="border border-charcoal/20 px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold hover:bg-charcoal hover:text-bone transition-all uppercase text-center">Portofolio Desainer</Link>
             </div>
           </motion.div>
         </div>
@@ -320,7 +264,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-gr-7">
             <h2 className="font-serif uppercase">Catatan Kayu.</h2>
-            <button className="text-[0.6rem] font-bold tracking-[0.4em] opacity-40 uppercase hover:opacity-100 transition-opacity">Semua Artikel</button>
+            <Link href="/jurnal" className="text-[0.6rem] font-bold tracking-[0.4em] opacity-40 uppercase hover:opacity-100 transition-opacity">Semua Artikel</Link>
           </div>
           <motion.div 
             initial="initial"
@@ -332,74 +276,34 @@ export default function Home() {
             }}
             className="grid grid-cols-1 md:grid-cols-3 gap-gr-4"
           >
-             {[
-               { title: "Psikologi Material Kayu dalam Hunian Modern", date: "20 APR 2026", category: "GAYA HIDUP" },
-               { title: "Menelusuri Jati Berkelanjutan di Jawa Tengah", date: "15 MAR 2026", category: "WARISAN" },
-               { title: "Koleksi Pilihan Kurator 2026", date: "02 FEB 2026", category: "KURASI" }
-             ].map((post, i) => (
-               <motion.div 
-                 key={i} 
-                 variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
-                 className="group cursor-pointer border-b border-earth-deep/10 pb-gr-6 transition-all hover:border-terracotta-accent"
-               >
-                 <div className="bg-bone/80 aspect-phi-inverse mb-gr-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000">
-                    <div className="absolute inset-0 bg-earth-deep opacity-10 group-hover:opacity-0 transition-opacity" />
-                 </div>
-                 <p className="text-[0.6rem] tracking-[0.5em] mb-gr-3 text-terracotta-accent font-bold uppercase">{post.category}</p>
-                 <h4 className="text-gr-2 leading-tight pr-gr-4 group-hover:text-terracotta-accent transition-all duration-500 mb-gr-4">{post.title}</h4>
-                 <div className="flex items-center justify-between text-[0.6rem] font-bold opacity-30 group-hover:opacity-100 transition-all uppercase tracking-[0.2em]">
-                    <span>{post.date}</span>
-                    <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                 </div>
-               </motion.div>
+             {journalPosts.map((post, i) => (
+                <motion.div 
+                  key={i} 
+                  variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
+                  className="group cursor-pointer border-b border-earth-deep/10 pb-gr-6 transition-all hover:border-terracotta-accent"
+                >
+                   <Link href={`/jurnal/post-${i}`}>
+                     <div className="aspect-phi-inverse mb-gr-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000 bg-charcoal/5">
+                        <Image 
+                          src={post.image} 
+                          alt="Journal cover" 
+                          fill 
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-earth-deep opacity-10 group-hover:opacity-0 transition-opacity" />
+                     </div>
+                     <p className="text-[0.5rem] tracking-[0.5em] mb-gr-3 text-terracotta-accent font-bold uppercase">{post.category}</p>
+                     <h4 className="text-gr-2 leading-tight pr-gr-4 group-hover:text-terracotta-accent transition-all duration-500 mb-gr-4 uppercase font-serif">{post.title}</h4>
+                     <div className="flex items-center justify-between text-[0.6rem] font-bold opacity-30 group-hover:opacity-100 transition-all uppercase tracking-[0.2em]">
+                        <span>{post.date}</span>
+                        <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                     </div>
+                   </Link>
+                </motion.div>
              ))}
           </motion.div>
         </div>
       </section>
-
-      {/* 8. Footer */}
-      <footer className="bg-charcoal text-bone pt-gr-8 pb-gr-6 px-gr-5 relative overflow-hidden">
-        {/* Pattern: Subtle Branding Repeat */}
-        <div className="absolute top-0 right-0 w-1/3 aspect-phi opacity-[0.03] select-none pointer-events-none translate-x-1/3 -translate-y-1/3">
-           <h1 className="text-[20rem] font-serif leading-none italic">K</h1>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gr-8 mb-gr-8">
-            <div className="md:col-span-6">
-              <h1 className="text-gr-6 font-serif mb-gr-4 tracking-tighter uppercase leading-none">KAYU <br /> MODERN</h1>
-              <p className="opacity-30 max-w-sm text-sm leading-relaxed border-l border-white/10 pl-gr-4">
-                Elevasi warisan Nusantara melalui desain furnitur arsitektural. Setiap keping dibuat untuk melampaui generasi, merawat ingatan dalam serat kayu.
-              </p>
-            </div>
-            <div className="md:col-span-3">
-              <p className="text-[0.6rem] font-bold tracking-[0.5em] text-gold-muted mb-gr-4 uppercase">Navigasi</p>
-              <ul className="space-y-gr-2 text-sm font-medium uppercase tracking-[0.2em] text-bone/40">
-                <li className="hover:text-bone cursor-pointer transition-colors">Koleksi Kurasi</li>
-                <li className="hover:text-bone cursor-pointer transition-colors">Studio & Atelier</li>
-                <li className="hover:text-bone cursor-pointer transition-colors">Pesan Khusus</li>
-                <li className="hover:text-bone cursor-pointer transition-colors">Tentang Kami</li>
-              </ul>
-            </div>
-            <div className="md:col-span-3">
-              <p className="text-[0.6rem] font-bold tracking-[0.5em] text-terracotta-accent mb-gr-4 uppercase">Kemitraan</p>
-              <ul className="space-y-gr-2 text-sm font-medium text-bone/40">
-                <li className="flex items-center gap-2 hover:text-bone cursor-pointer transition-colors"><Mail size={14} /> studio@kayumodern.com</li>
-                <li className="flex items-center gap-2 hover:text-bone cursor-pointer transition-colors"><Globe size={14} /> Jawa Tengah, Indonesia</li>
-                <li className="flex items-center gap-2 pt-gr-2 text-gold-muted uppercase tracking-[0.4em] text-[0.65rem] font-bold cursor-pointer hover:opacity-70 transition-opacity"><Instagram size={14} /> @kayumodern</li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-gr-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-gr-4">
-             <div className="flex gap-gr-4 opacity-20 text-[0.55rem] tracking-[0.5em] uppercase font-bold">
-                <span>Terinspirasi Rasio Emas</span>
-                <span>•</span>
-                <span>Dirancang di Nusantara</span>
-             </div>
-             <p className="text-[0.55rem] tracking-[0.5em] opacity-20 uppercase font-bold">© 2026 KAYU MODERN STUDIO PERTUKANGAN</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
