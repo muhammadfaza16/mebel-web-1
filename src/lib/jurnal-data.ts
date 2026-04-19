@@ -15,7 +15,7 @@ export const journalPosts: JournalPost[] = [
     title: "Psikologi Material Kayu dalam Hunian Modern", 
     date: "20 APR 2026", 
     category: "GAYA HIDUP", 
-    image: "/assets/journal-detail-1.png",
+    image: "/assets/journal-1.png",
     excerpt: "Bagaimana tekstur dan aroma kayu jati asli dapat menurunkan tingkat stres dan meningkatkan fokus di ruang kerja rumah Anda.",
     content: [
       "BERBICARA SOAL INTERIOR MEWAH, SERING KALI KITA TERJEBAK PADA VISUAL. NAMUN, MATERIALITAS KAYU ADALAH PENGALAMAN MULTISENSORI. DALAM STUDI TERBARU MENGENAI BIOFILIA, KEHADIRAN SERAT KAYU ALAMI DI RUANG KERJA TERBUKTI MAMPU MENURUNKAN KADAR KORTISOL SERTA MENSTIMULASI KREATIVITAS.",
@@ -52,7 +52,7 @@ export const journalPosts: JournalPost[] = [
     title: "Seni Sambungan: Mortise & Tenon vs Modernitas", 
     date: "10 JAN 2026", 
     category: "TEKNIK", 
-    image: "/assets/journal-1.png",
+    image: "/assets/journal-4.png",
     excerpt: "Mengapa teknik sambungan kayu kuno tetap menjadi standar emas dalam kekuatan furnitur mewah masa kini.",
     content: [
       "TEKNIK MORTISE DAN TENON ADALAH BUKTI BAHWA PRESISI BISA DICAPAI TANPA LOGAM. KEKUATANNYA TERLETAK PADA PENYESUAIAN ANTARA LUBANG DAN POROS YANG DIHITUNG SECARA MATEMATIS."
