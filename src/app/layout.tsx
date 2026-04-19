@@ -1,27 +1,22 @@
 import type { Metadata } from "next";
-import { Syne, Bricolage_Grotesque } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Kayu Modern | Artisan Indonesian Furniture",
-  description: "Modern Indonesian Heritage Furniture. Sustainable Teak, Trembesi, and Mahoni craftsmanship designed with golden ratio precision.",
-  keywords: ["Modern Indonesian Furniture", "Teak Furniture", "Custom Jati Furniture", "Luxury Home Decor Indonesia", "Artisan Woodwork"],
-  openGraph: {
-    title: "Kayu Modern | Artisan Indonesian Furniture",
-    description: "Premium modern furniture crafted from traditional Indonesian woods.",
-    images: ["/og-image.png"],
-  },
+  title: "Kayu Modern | The Art of Indonesian Heritage",
+  description: "Ultra-luxury, modern Indonesian heritage furniture. Sustainable Teak, Trembesi, and Mahoni craftsmanship for discerning spaces.",
+  keywords: ["Luxury Indonesian Furniture", "High-end Teak", "Modern Heritage Woodwork", "Bespoke Furniture Jakarta", "Architectural Woodwork"],
 };
 
 export default function RootLayout({
@@ -32,9 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-bricolage selection:bg-terracotta-vibrant selection:text-white">
+      <body className="min-h-full font-inter selection:bg-slate-900 selection:text-white">
         {children}
       </body>
     </html>

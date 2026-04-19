@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Menu, Trees, Hammer, Sparkles } from "lucide-react";
+import { motion, useScroll } from "framer-motion";
+import { ArrowUpRight, Menu, Hammer, Sparkles, MoveRight, Mail, Instagram, Globe } from "lucide-react";
 import { useRef } from "react";
 
 export default function Home() {
@@ -12,154 +12,223 @@ export default function Home() {
     offset: ["start start", "end end"],
   });
 
-  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  // Use scrollYProgress for any future animations or remove it if not needed.
+  // For now, keeping it as requested for "Advanced Parallax" potential.
 
   return (
-    <main ref={containerRef} className="relative bg-bone selection:bg-terracotta-vibrant selection:text-white">
-      {/* Navigation - Golden Ratio Spacing */}
+    <main ref={containerRef} className="relative bg-bone selection:bg-charcoal selection:text-bone scroll-smooth">
+      {/* Navigation - Ultra Minimalist */}
       <nav className="fixed top-0 left-0 w-full z-50 px-gr-5 py-gr-4 flex justify-between items-center mix-blend-difference text-white">
-        <h1 className="text-gr-4 font-syne tracking-tighter leading-none m-0">KAYU.</h1>
-        <div className="flex gap-gr-4 items-center">
-          <span className="hidden md:inline font-medium tracking-tight">ENQUIRE FOR BESPOKE</span>
-          <div className="w-gr-6 h-gr-6 rounded-full bg-white flex items-center justify-center text-emerald-deep">
-            <Menu size={20} />
+        <h1 className="text-gr-4 font-serif font-medium tracking-tighter m-0">K.M</h1>
+        <div className="flex gap-gr-6 items-center text-xs tracking-[0.3em] font-medium">
+          <span className="hidden md:inline cursor-pointer hover:opacity-60 transition-opacity">COLLECTIONS</span>
+          <span className="hidden md:inline cursor-pointer hover:opacity-60 transition-opacity">ATELIER</span>
+          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">
+            <Menu size={18} />
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <motion.section 
-        style={{ scale: heroScale, opacity: heroOpacity }}
-        className="relative h-screen flex flex-col justify-center items-center overflow-hidden px-gr-4"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl">
-          <motion.h1 
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-syne text-[clamp(5rem,20vw,15rem)] leading-[0.8] tracking-tighter text-emerald-vibrant flex flex-col items-center"
+      {/* 1. Cinematic Hero */}
+      <section className="relative h-screen flex flex-col justify-end items-start overflow-hidden">
+        <Image 
+          src="/assets/hero-lifestyle.png" 
+          alt="Luxury Interior" 
+          fill 
+          priority
+          className="object-cover brightness-[0.85]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        
+        <div className="relative z-10 px-gr-5 pb-gr-6 w-full max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span>KAYU</span>
-            <span className="text-terracotta-deep -mt-4 ml-gr-6">MODERN</span>
-          </motion.h1>
+            <h1 className="text-white mb-gr-4 max-w-4xl leading-[0.9]">
+              THE ART OF <br /> INDONESIAN <br /> HERITAGE.
+            </h1>
+            <div className="flex flex-col md:flex-row gap-gr-4 items-start md:items-center">
+              <p className="text-white/60 text-gr-2 font-light tracking-wide max-w-md">
+                Ultra-luxury craftsmanship met with modern architectural precision. Sustainable Jati for the discerning minimalist.
+              </p>
+              <div className="flex-1 h-[1px] bg-white/20 hidden md:block" />
+              <motion.div 
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-white/40 text-xs tracking-[0.4em] flex items-center gap-gr-2"
+              >
+                SCROLL <MoveRight size={14} />
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
+      </section>
 
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0, rotate: -15 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
-          transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute right-gr-4 top-gr-8 w-gr-8 h-gr-8 md:w-[30vw] md:h-[30vw] pointer-events-none"
-        >
-          <Image 
-            src="/assets/doodle-leaf.png" 
-            alt="Artisan Leaf" 
-            fill 
-            className="object-contain"
-          />
-        </motion.div>
-
-        <div className="absolute bottom-gr-5 left-gr-5 max-w-sm">
-          <p className="text-gr-2 font-medium leading-tight">
-            Modern Indonesian Heritage Furniture. <br />
-            Crafted with <span className="text-terracotta-vibrant italic">Golden Ratio</span> precision.
-          </p>
-        </div>
-      </motion.section>
-
-      {/* Features - Vibrant Emerald Section */}
-      <section className="relative py-gr-8 bg-emerald-deep text-bone px-gr-5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-gr-6 items-center">
-          <div className="space-y-gr-4">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-gr-2 px-gr-3 py-gr-1 rounded-full border border-bone/20 text-emerald-vibrant"
-            >
-              <Trees size={16} />
-              <span className="text-sm font-bold tracking-widest uppercase">The Origin</span>
-            </motion.div>
-            <h2 className="font-syne text-gr-6 leading-none">SELECTION #04: <br /> AGED JATI</h2>
-            <p className="text-bone/80 text-lg max-w-md">
-              Sourced from sustainable Perhutani reserves. Aged for 40 years to achieve the perfect density and moisture balance.
+      {/* 2. Heritage Statement */}
+      <section className="py-gr-8 px-gr-5 bg-bone">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-gr-6 items-start">
+          <div className="flex-1">
+            <h2 className="text-earth-deep mb-gr-4 leading-[1.1]">FORTY YEARS <br /> IN THE WOOD.</h2>
+            <p className="text-gr-2 leading-relaxed text-justify-phi uppercase tracking-[0.05em] font-medium opacity-60">
+              EST. 1986 — OUR JOURNEY BEGAN IN THE HEART OF CENTRAL JAVA, WHERE THE FIRST SEEDS OF TEAK WERE SELECTED NOT FOR THEIR SIZE, BUT FOR THEIR SOUL. TODAY, WE CONTINUE THIS LEGACY BY BRIDGING TRADITIONAL JOINERY WITH THE CLEAN LINES OF MODERN ARCHITECTURE.
             </p>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-emerald-vibrant text-emerald-deep px-gr-5 py-gr-3 rounded-full font-bold flex items-center gap-gr-2 group"
-            >
-              VIEW COLLECTION 
-              <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.button>
+          </div>
+          <div className="flex-1 flex flex-col justify-end pt-gr-6">
+             <div className="border-l-2 border-terracotta-accent pl-gr-4">
+                <p className="text-gr-1 font-bold tracking-widest text-terracotta-accent mb-2 italic">OUR PHILOSOPHY</p>
+                <p className="text-lg text-earth-deep/80 leading-relaxed">
+                  We believe every piece of wood carries a memory. Our mission is to preserve that memory through precise engineering and hand-applied oils.
+                </p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Curated Collections Series */}
+      <section className="py-gr-8 bg-charcoal text-bone px-gr-5 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-end mb-gr-6">
+            <h2 className="text-white font-serif leading-none">THE SERIES.</h2>
+            <span className="text-xs tracking-[0.5em] opacity-40">SELECT YOUR LINEAGE</span>
           </div>
           
-          <div className="relative aspect-[4/5] bg-emerald-vibrant/10 rounded-gr-4 overflow-hidden group border border-bone/10">
-            <Image 
-              src="/assets/product-jati.png" 
-              alt="Jati Table" 
-              fill 
-              className="object-contain p-gr-5 group-hover:scale-110 transition-transform duration-700"
-            />
-            {/* Doodle Overlay */}
-            <div className="absolute top-gr-4 right-gr-4 w-gr-6 h-gr-6 animate-pulse opacity-50">
-              <Sparkles className="text-terracotta-vibrant" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Craftsmanship - Vibrant Terracotta Section */}
-      <section className="py-gr-8 bg-bone px-gr-5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-gr-4 mb-gr-6">
-            <h2 className="font-syne text-gr-7 text-indigo-deep leading-[0.9]">
-              THE ART <br /> OF JOINERY
-            </h2>
-            <div className="max-w-xs text-right">
-              <p className="font-bold text-terracotta-deep">01 / HAND-CHISELED</p>
-              <p className="text-sm">Mortise and tenon joints that last for generations.</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gr-5">
-            {[
-              { icon: Trees, label: "SUSTAINABLE", color: "bg-emerald-vibrant" },
-              { icon: Hammer, label: "ARTISANAL", color: "bg-terracotta-vibrant" },
-              { icon: Sparkles, label: "PRECISE", color: "bg-indigo-vibrant" }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -10 }}
-                className={`${item.color} p-gr-5 rounded-gr-4 h-[300px] flex flex-col justify-between text-white group cursor-pointer`}
-              >
-                <item.icon size={48} className="group-hover:rotate-12 transition-transform" />
-                <div>
-                  <h4 className="font-syne text-gr-4">{item.label}</h4>
-                  <div className="w-0 group-hover:w-full h-1 bg-white transition-all duration-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gr-2">
+             {/* Collection 1 */}
+             <motion.div 
+              whileHover={{ scale: 0.98 }}
+              className="group relative aspect-[phi] overflow-hidden bg-slate-900 cursor-pointer"
+             >
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 p-gr-5 flex flex-col justify-between">
+                   <span className="text-xs tracking-[0.4em] font-bold">SERIES 01 / HERITAGE</span>
+                   <div className="space-y-2">
+                     <h3 className="text-gr-5 leading-none">THE ANCESTOR TABLE</h3>
+                     <p className="opacity-0 group-hover:opacity-60 transition-opacity text-sm tracking-widest">SOLID JATI / HAND POLISHED</p>
+                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Doodle Banner */}
-          <div className="mt-gr-7 relative h-gr-8 bg-indigo-deep rounded-gr-4 overflow-hidden flex items-center justify-around">
-            <div className="absolute inset-0 opacity-10 bg-[url('/assets/doodle-tools.png')] bg-repeat bg-center" />
-            <span className="relative font-syne text-gr-4 text-indigo-vibrant animate-pulse">CRAFTED WITH SOUL</span>
+             </motion.div>
+             {/* Collection 2 */}
+             <motion.div 
+              whileHover={{ scale: 0.98 }}
+              className="group relative aspect-square md:aspect-[phi] overflow-hidden bg-earth-deep cursor-pointer"
+             >
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 p-gr-5 flex flex-col justify-between">
+                   <span className="text-xs tracking-[0.4em] font-bold">SERIES 02 / MINIMALIST</span>
+                   <div className="space-y-2">
+                     <h3 className="text-gr-5 leading-none">THE VOID CONSOLE</h3>
+                     <p className="opacity-0 group-hover:opacity-60 transition-opacity text-sm tracking-widest">MAHONI / CHARCOAL FINISH</p>
+                   </div>
+                </div>
+             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-emerald-deep text-bone py-gr-6 px-gr-5 border-t border-bone/10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-gr-4">
-          <p className="font-syne text-gr-2">KAYU MODERN.</p>
-          <div className="flex gap-gr-4 text-xs font-bold tracking-widest uppercase opacity-60">
-            <span>Instagram</span>
-            <span>LinkedIn</span>
-            <span>Contact</span>
+      {/* 4. Material Library */}
+      <section className="py-gr-8 px-gr-5 bg-bone">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gr-1 border-y border-earth-deep/10">
+           {['JATI', 'TREMBESI', 'MAHONI'].map((wood, i) => (
+             <div key={i} className="group py-gr-6 px-gr-4 flex flex-col items-center text-center hover:bg-bone transition-all cursor-crosshair">
+                <p className="text-[0.6rem] tracking-[0.6em] mb-gr-4 opacity-40">SPECIES {i+1}</p>
+                <h4 className="text-gr-5 mb-gr-1 group-hover:tracking-widest transition-all duration-700">{wood}</h4>
+                <div className="w-12 h-[1px] bg-earth-deep group-hover:w-full transition-all duration-500" />
+                <p className="mt-gr-4 text-xs tracking-widest leading-loose opacity-60">High density, organic grain patterns, weather resistant.</p>
+             </div>
+           ))}
+        </div>
+      </section>
+
+      {/* 5. The Atelier (Workshop Sketches) */}
+      <section className="relative py-gr-8 bg-bone px-gr-5 h-[80vh] flex items-center overflow-hidden">
+        <div className="absolute right-0 top-0 w-1/2 h-full opacity-10">
+          <Image src="/assets/technical-sketch.png" alt="Sketch" fill className="object-contain" />
+        </div>
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="max-w-2xl">
+            <h2 className="mb-gr-4 italic font-serif">&quot;PRECISION IS <br /> OUR ONLY <br /> ORNAMENT.&quot;</h2>
+            <div className="flex gap-gr-4 items-center">
+               <span className="bg-earth-deep w-12 h-12 rounded-full flex items-center justify-center text-bone">
+                  <Hammer size={20} />
+               </span>
+               <p className="text-lg tracking-tight">Our Atelier in Jepara uses architectural precision to ensure every joint is a masterpiece of engineering.</p>
+            </div>
+            <button className="mt-gr-5 text-sm font-bold tracking-[0.4em] flex items-center gap-gr-2 hover:gap-gr-4 transition-all">
+               TOUR THE WORKSHOP <MoveRight size={16} />
+            </button>
           </div>
-          <p className="text-xs opacity-40">© 2026 KAYU MODERN CRAFT</p>
+        </div>
+      </section>
+
+      {/* 6. Bespoke Concierge */}
+      <section className="py-gr-8 bg-gold-muted text-earth-deep md:text-center px-gr-5">
+        <div className="max-w-3xl mx-auto">
+          <Sparkles className="mx-auto mb-gr-4 text-earth-deep" size={32} />
+          <h2 className="mb-gr-4">BESPOKE <br className="md:hidden" /> PARTNERSHIPS.</h2>
+          <p className="text-gr-2 mb-gr-5 leading-relaxed">
+            We collaborate with architects and interior designers globally to create custom furniture solutions for high-end residential and commercial spaces.
+          </p>
+          <div className="flex flex-col md:flex-row gap-gr-2 justify-center">
+             <button className="bg-earth-deep text-bone px-gr-5 py-gr-3 text-xs tracking-widest font-bold">ENQUIRE FOR PROJECTS</button>
+             <button className="border border-earth-deep px-gr-5 py-gr-3 text-xs tracking-widest font-bold hover:bg-earth-deep hover:text-bone transition-all">VIEW DESIGNER PORTFOLIO</button>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. The Journal */}
+      <section className="py-gr-8 px-gr-5 bg-bone">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-gr-6">
+            <h2 className="font-serif">JOURNAL.</h2>
+            <button className="text-xs font-bold tracking-[0.3em] opacity-60">READ ALL STORIES</button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gr-4">
+             {[
+               { title: "The Psychology of Wood in Modern Living", date: "APR 20, 2026", category: "LIFESTYLE" },
+               { title: "Sourcing Sustainable Jati in Central Java", date: "MAR 15, 2026", category: "HERITAGE" },
+               { title: "The 2026 Curator's Selection", date: "FEB 02, 2026", category: "CURATED" }
+             ].map((post, i) => (
+               <div key={i} className="group cursor-pointer border-b border-earth-deep/10 pb-gr-4">
+                 <p className="text-[0.6rem] tracking-[0.4em] mb-gr-2 opacity-50">{post.category} / {post.date}</p>
+                 <h4 className="text-gr-2 leading-tight group-hover:text-terracotta-accent transition-colors mb-gr-3">{post.title}</h4>
+                 <div className="flex items-center gap-2 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                    READ STORY <ArrowUpRight size={14} />
+                 </div>
+               </div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Footer */}
+      <footer className="bg-charcoal text-bone py-gr-7 px-gr-5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-gr-6 mb-gr-7">
+            <div className="col-span-1 md:col-span-2">
+              <h1 className="text-gr-5 font-serif mb-gr-2 tracking-tighter">KAYU MODERN.</h1>
+              <p className="opacity-40 max-w-sm text-sm">Elevating Indonesian heritage through architectural furniture design. Crafted for generations to come.</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold tracking-[0.4em] opacity-40 mb-gr-3 uppercase">Contact</p>
+              <ul className="space-y-gr-2 text-sm opacity-60">
+                <li className="flex items-center gap-2"><Mail size={14} /> studio@kayumodern.com</li>
+                <li className="flex items-center gap-2"><Globe size={14} /> Central Java, Indonesia</li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-bold tracking-[0.4em] opacity-40 mb-gr-3 uppercase">Social</p>
+              <ul className="space-y-gr-2 text-sm opacity-60">
+                <li className="flex items-center gap-2"><Instagram size={14} /> @kayumodern</li>
+                <li className="flex items-center gap-2"><MoveRight size={14} /> LinkedIn</li>
+              </ul>
+            </div>
+          </div>
+          <div className="pt-gr-5 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-gr-4">
+             <p className="text-[0.6rem] tracking-widest opacity-20 uppercase font-bold">Inspired by the Golden Ratio</p>
+             <p className="text-[0.6rem] tracking-widest opacity-20 uppercase font-bold">© 2026 KAYU MODERN CRAFT ATELIER</p>
+          </div>
         </div>
       </footer>
     </main>
