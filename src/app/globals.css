@@ -59,3 +59,32 @@
   text-align: justify;
   text-justify: inter-word;
 }
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 9999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+.aspect-phi {
+  aspect-ratio: 1.618 / 1;
+}
+
+.aspect-phi-inverse {
+  aspect-ratio: 1 / 1.618;
+}
+
+.sticky-nav {
+  @apply backdrop-blur-md transition-all duration-500 border-b border-transparent;
+}
+
+.sticky-nav-scrolled {
+  @apply bg-white/80 border-bone/20 text-charcoal shadow-sm;
+  mix-blend-mode: normal !important;
+}
