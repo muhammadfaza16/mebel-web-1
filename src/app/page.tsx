@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
 import { ArrowUpRight, MoveRight } from "lucide-react";
 import { useRef } from "react";
+import { journalPosts } from "@/lib/jurnal-data";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,11 +15,6 @@ export default function Home() {
     offset: ["start start", "end end"],
   });
 
-  const journalPosts = [
-    { title: "Psikologi Material Kayu dalam Hunian Modern", date: "20 APR 2026", category: "GAYA HIDUP", image: "/assets/journal-1.png" },
-    { title: "Menelusuri Jati Berkelanjutan di Jawa Tengah", date: "15 MAR 2026", category: "WARISAN", image: "/assets/journal-2.png" },
-    { title: "Koleksi Pilihan Kurator 2026", date: "02 FEB 2026", category: "KURASI", image: "/assets/journal-3.png" },
-  ];
 
   return (
     <main ref={containerRef} className="relative bg-transparent selection:bg-charcoal selection:text-bone scroll-smooth">
@@ -282,24 +278,24 @@ export default function Home() {
             }}
             className="grid grid-cols-1 md:grid-cols-3 gap-gr-4"
           >
-             {journalPosts.map((post, i) => (
+             {journalPosts.slice(0, 3).map((post, i) => (
                 <motion.div 
-                  key={i} 
+                  key={post.id} 
                   variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
                   className="group cursor-pointer border-b border-earth-deep/10 pb-gr-6 transition-all hover:border-terracotta-accent"
                 >
-                   <Link href={`/jurnal/post-${i}`}>
-                     <div className="aspect-phi-inverse mb-gr-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000 bg-charcoal/5">
-                        <Image 
-                          src={post.image} 
-                          alt="Journal cover" 
-                          fill 
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-earth-deep opacity-10 group-hover:opacity-0 transition-opacity" />
-                     </div>
-                     <p className="text-[0.5rem] tracking-[0.5em] mb-gr-3 text-terracotta-accent font-bold uppercase">{post.category}</p>
-                     <h4 className="text-gr-2 leading-tight pr-gr-4 group-hover:text-terracotta-accent transition-all duration-500 mb-gr-4 uppercase font-serif">{post.title}</h4>
+                   <Link href={`/jurnal/${post.id}`}>
+                      <div className="aspect-phi-inverse mb-gr-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000 bg-charcoal/5">
+                         <Image 
+                            src={post.image} 
+                            alt={post.title} 
+                            fill 
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                         />
+                         <div className="absolute inset-0 bg-earth-deep opacity-10 group-hover:opacity-0 transition-opacity" />
+                      </div>
+                      <p className="text-[0.5rem] tracking-[0.5em] mb-gr-3 text-terracotta-accent font-bold uppercase">{post.category}</p>
+                      <h4 className="text-gr-2 leading-tight pr-gr-4 group-hover:text-terracotta-accent transition-all duration-500 mb-gr-4 uppercase font-serif">{post.title}</h4>
                      <div className="flex items-center justify-between text-[0.6rem] font-bold opacity-30 group-hover:opacity-100 transition-all uppercase tracking-[0.2em]">
                         <span>{post.date}</span>
                         <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
