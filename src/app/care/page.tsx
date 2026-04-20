@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ChevronDown, ShieldCheck, Droplet, Sun, Wind } from "lucide-react";
 
 export default function CarePage() {
