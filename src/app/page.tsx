@@ -42,43 +42,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MANIFESTO / PILL IMAGES SECTION (Refined Ethos) */}
-      <section className="py-sp-12 md:py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg relative overflow-hidden flex items-center justify-center min-h-[60vh]">
-        {/* Background Pattern Watermark - Fixed Scale */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-serif font-bold text-brand-text/[0.03] select-none pointer-events-none transform -rotate-6">
-           JPR
-        </div>
+      {/* ETHOS SECTION (Editorial Layout with Bespoke Images) */}
+      <section className="py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-sp-8 items-center">
+            
+            {/* Left: Text */}
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-8"
+              >
+                <span className="text-[10px] tracking-[0.3em] uppercase text-brand-terracotta block font-bold mb-sp-4">· Our Ethos</span>
+                <h2 className="text-brand-text leading-[1.2] text-4xl md:text-5xl lg:text-[64px] tracking-tight">
+                  Furniture isn't just what <br className="hidden lg:block" />
+                  <span className="italic font-serif text-brand-text/60"> occupies</span> a room, <br className="hidden md:block" />
+                  it’s how you <span className="font-serif italic text-brand-terracotta">curate</span> the memory <br className="hidden md:block" />
+                  of the <span className="underline decoration-brand-text/20 underline-offset-8">space</span> it lives in.
+                </h2>
+              </motion.div>
 
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-sp-6"
-          >
-            <span className="text-[10px] tracking-[0.3em] uppercase text-brand-terracotta block font-bold">· Our Ethos</span>
-          </motion.div>
+              <motion.div 
+                 initial={{ opacity: 0 }}
+                 whileInView={{ opacity: 1 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.3 }}
+              >
+                <div className="h-px w-12 bg-brand-text/20 mb-sp-4" />
+                <p className="text-lg md:text-xl text-brand-text-muted font-light max-w-md leading-relaxed">
+                  We seamlessly blend Javanese heritage with contemporary architectural lines, crafting not for the season, but for the century.
+                </p>
+                <Link href="/about" className="inline-block mt-8 text-[10px] uppercase tracking-widest font-bold border-b border-brand-text pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-colors">
+                  Discover Our Origins
+                </Link>
+              </motion.div>
+            </div>
 
-          <h2 className="text-brand-text leading-[1.3] text-3xl md:text-5xl lg:text-6xl tracking-tight">
-            Furniture isn't just what 
-            <span className="italic font-serif text-brand-text/60"> occupies</span> a room, <br className="hidden md:block" />
-            it’s how you <span className="font-serif italic">curate</span> the 
-            <span className="text-brand-terracotta italic text-5xl md:text-8xl transition-all hover:scale-105 duration-500 inline-block px-2">memory</span> <br className="hidden md:block" />
-            of the <span className="underline decoration-brand-terracotta/30 underline-offset-8">space</span> it lives in.
-          </h2>
-
-          <motion.div 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ delay: 0.3 }}
-             className="mt-sp-8"
-          >
-            <div className="h-px w-12 bg-brand-terracotta/40 mx-auto mb-sp-4" />
-            <p className="text-lg md:text-xl text-brand-text font-light max-w-2xl mx-auto leading-relaxed">
-              We seamlessly blend Javanese heritage with contemporary architectural lines, crafting not for the season, but for the century.
-            </p>
-          </motion.div>
+            {/* Right: Bespoke Images Overlap */}
+            <div className="lg:col-span-6 relative h-[500px] md:h-[600px] order-1 lg:order-2 mb-12 lg:mb-0">
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 whileInView={{ opacity: 1, scale: 1 }}
+                 viewport={{ once: true }}
+                 className="absolute top-0 right-0 w-4/5 h-[400px] md:h-[500px] z-10 overflow-hidden"
+               >
+                 <Image src="/assets/artisteak_workshop_hero.png" alt="Teak Workshop" fill className="object-cover transition-transform duration-1000 hover:scale-105" />
+                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-bg/50 to-transparent" />
+               </motion.div>
+               
+               <motion.div 
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.2 }}
+                 className="absolute bottom-0 left-0 w-1/2 h-[250px] md:h-[350px] z-20 border-8 border-brand-bg shadow-2xl overflow-hidden"
+               >
+                 <Image src="/assets/artisteak_artisan_hands.png" alt="Artisan Craftsmanship" fill className="object-cover transition-transform duration-1000 hover:scale-105" />
+               </motion.div>
+            </div>
+            
+          </div>
         </div>
       </section>
 
