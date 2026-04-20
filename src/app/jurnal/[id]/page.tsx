@@ -94,7 +94,7 @@ export default function JournalDetail() {
             {/* Main Body Content */}
             <article className="lg:col-span-8 lg:col-start-5 space-y-gr-7">
                {post.content.map((para, i) => (
-                  <p key={i} className="text-xl leading-[1.8] text-earth-deep/90 text-justify-phi uppercase tracking-tight">
+                  <p key={i} className="text-xl leading-[1.8] text-earth-deep/90 text-justify-phi tracking-tight">
                      {para}
                   </p>
                ))}
