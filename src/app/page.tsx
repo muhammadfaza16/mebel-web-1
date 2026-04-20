@@ -205,9 +205,50 @@ export default function Home() {
                   <h4 className="text-2xl mb-3 text-brand-text">International Compliance</h4>
                   <p className="max-w-xl text-brand-text-muted">Our finishing processes meet strict US and EU VOC-emission standards. Furthermore, all goods undergo rigorous V-Legal verification and specialized moisture-content kilning to survive diverse global climates without cracking.</p>
                </div>
-            </div>
+             </div>
           </div>
         </div>
+      </section>
+
+      {/* THE JOURNAL INSIGHTS */}
+      <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg border-t border-brand-text/10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-end mb-sp-8">
+           <div>
+              <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· Insights & Education</span>
+              <h2 className="text-4xl md:text-5xl text-brand-text leading-tight">The Journal.</h2>
+           </div>
+           <Link href="/journal" className="hidden md:inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest border-b border-brand-text pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-colors">
+              Read All Articles <ArrowRight size={14} />
+           </Link>
+        </div>
+        
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+           {/* Featured Article 1 */}
+           <Link href="/journal/anatomy-of-javanese-teak" className="group block">
+              <div className="relative h-64 md:h-80 w-full mb-4 card-hard overflow-hidden">
+                 <div className="absolute inset-0 bg-brand-dark-bg/5 group-hover:bg-transparent transition-colors z-10" />
+                 <Image src="/assets/artisteak_teak_grain_detail.png" alt="Teak Grain" fill className="object-cover opacity-90 mix-blend-multiply group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" />
+              </div>
+              <span className="text-[9px] uppercase tracking-widest text-brand-terracotta font-bold mb-2 block">Materials</span>
+              <h3 className="text-2xl text-brand-text group-hover:text-brand-terracotta transition-colors mb-2">The Anatomy of Javanese Teak: Why Age Matters</h3>
+              <p className="text-sm text-brand-text-muted line-clamp-2">Discover why we strictly source Grade-A mature Tectona Grandis from regulated plantations.</p>
+           </Link>
+
+           {/* Featured Article 2 */}
+           <Link href="/journal/science-mortise-tenon" className="group block">
+              <div className="relative h-64 md:h-80 w-full mb-4 card-hard overflow-hidden">
+                 <div className="absolute inset-0 bg-brand-dark-bg/5 group-hover:bg-transparent transition-colors z-10" />
+                 <Image src="/assets/artisteak_artisan_hands.png" alt="Joinery" fill className="object-cover opacity-90 mix-blend-multiply group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" />
+              </div>
+              <span className="text-[9px] uppercase tracking-widest text-brand-terracotta font-bold mb-2 block">Craftsmanship</span>
+              <h3 className="text-2xl text-brand-text group-hover:text-brand-terracotta transition-colors mb-2">Mastering Time: The Science of Mortise & Tenon</h3>
+              <p className="text-sm text-brand-text-muted line-clamp-2">Screws strip. Glue degrades. We reject modern shortcuts in favor of traditional engineering.</p>
+           </Link>
+        </div>
+        
+        <Link href="/journal" className="md:hidden mt-8 inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest border-b border-brand-text pb-1 hover:text-brand-terracotta transition-colors">
+           Read All Articles <ArrowRight size={14} />
+        </Link>
       </section>
       
     </main>

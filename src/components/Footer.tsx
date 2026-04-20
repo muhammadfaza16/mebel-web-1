@@ -38,6 +38,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li><Link href="/catalog" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Catalog <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
               <li><Link href="/custom-order" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Custom Order <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
+              <li><Link href="/journal" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Journal <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
               <li><Link href="/about" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">History & Artisan <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
               <li><Link href="/care" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Care & FAQ <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
             </ul>

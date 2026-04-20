@@ -12,7 +12,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages that start with a dark hero section
-  const isDarkHeroPage = pathname === "/" || pathname === "/catalog" || pathname === "/about";
+  const isDarkHeroPage = pathname === "/" || pathname === "/catalog" || pathname === "/about" || pathname === "/journal" || pathname.startsWith("/journal/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Catalog', href: '/catalog' },
     { name: 'Custom Order', href: '/custom-order' },
+    { name: 'Journal', href: '/journal' },
     { name: 'About', href: '/about' },
     { name: 'Care & FAQ', href: '/care' },
   ];
@@ -123,6 +124,7 @@ export default function Navbar() {
           <div className={`flex gap-sp-4 items-center text-subheading ${(scrolled || !isDarkHeroPage) ? "" : "text-white"}`}>
             <Link href="/catalog" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Catalog</Link>
             <Link href="/custom-order" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Custom Order</Link>
+            <Link href="/journal" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Journal</Link>
             <Link href="/about" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>About</Link>
             
             <button 
