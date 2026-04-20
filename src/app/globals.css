@@ -38,7 +38,7 @@
   --spacing-gr-8: 7.265rem;
 
   /* Marquee Animation */
-  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee: marquee 20s linear infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
