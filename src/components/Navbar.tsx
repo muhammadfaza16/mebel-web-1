@@ -148,14 +148,21 @@ export default function Navbar() {
               <span className={`text-[10px] tracking-[0.2em] font-medium mt-1 uppercase ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white/70"}`}>Jepara</span>
             </div>
           </Link>
-          <div className={`flex gap-6 md:gap-8 items-center text-subheading tracking-wide ${(scrolled || !isDarkHeroPage) ? "" : "text-white"}`}>
-            <Link href="/catalog" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Catalog</Link>
-            <Link href="/journal" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Journal</Link>
+          <div className={`flex items-center gap-6 text-[11px] tracking-widest uppercase font-bold ${(scrolled || !isDarkHeroPage) ? "" : "text-white"}`}>
             
-            {/* Toggler / Expand the list */}
+            {/* Inline Desktop Links */}
+            <div className="hidden lg:flex items-center gap-8">
+              {navLinks.slice(1).map(link => (
+                <Link key={link.name} href={link.href} className={`cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted hover:text-brand-terracotta" : "text-white/80 hover:text-white"}`}>
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Toggler / Expand the list (Mobile & Tablet Only) */}
             <button 
               onClick={() => setIsOpen(true)}
-              className={`group flex items-center gap-3 px-3 py-2 rounded-none border transition-all cursor-pointer ml-2 ${(scrolled || !isDarkHeroPage) ? "border-brand-text/20 hover:bg-brand-text hover:text-white" : "border-white/30 hover:bg-white hover:text-brand-dark-bg"}`}
+              className={`lg:hidden group flex items-center gap-3 px-3 py-2 rounded-none border transition-all cursor-pointer ml-2 ${(scrolled || !isDarkHeroPage) ? "border-brand-text/20 hover:bg-brand-text hover:text-white" : "border-white/30 hover:bg-white hover:text-brand-dark-bg"}`}
             >
               <span className={`text-[10px] uppercase tracking-widest font-semibold hidden sm:inline ${(scrolled || !isDarkHeroPage) ? "text-brand-text group-hover:text-white" : "text-white group-hover:text-brand-dark-bg"}`}>Menu</span>
               <Menu size={16} strokeWidth={1.5} className={(scrolled || !isDarkHeroPage) ? "text-brand-text group-hover:text-white" : "text-white group-hover:text-brand-dark-bg"} />
