@@ -88,7 +88,7 @@ export default function Home() {
                  viewport={{ once: true }}
                  className="absolute top-0 right-0 w-4/5 h-[400px] md:h-[500px] z-10 overflow-hidden"
                >
-                 <Image src="/assets/artisteak_workshop_hero.png" alt="Teak Workshop" fill className="object-cover transition-transform duration-1000 hover:scale-105" />
+                 <Image src="/assets/artisteak_bespoke_lounge.png" alt="Bespoke Teak Lounge" fill className="object-cover transition-transform duration-1000 hover:scale-105 overflow-hidden" />
                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-bg/50 to-transparent" />
                </motion.div>
                
@@ -99,7 +99,7 @@ export default function Home() {
                  transition={{ delay: 0.2 }}
                  className="absolute bottom-0 left-0 w-1/2 h-[250px] md:h-[350px] z-20 border-8 border-brand-bg shadow-2xl overflow-hidden"
                >
-                 <Image src="/assets/artisteak_artisan_hands.png" alt="Artisan Craftsmanship" fill className="object-cover transition-transform duration-1000 hover:scale-105" />
+                 <Image src="/assets/artisteak_joinery_detail.png" alt="Teak Joinery Macro Detail" fill className="object-cover transition-transform duration-1000 hover:scale-105" />
                </motion.div>
             </div>
             
