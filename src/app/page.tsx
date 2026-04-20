@@ -2,310 +2,214 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll } from "framer-motion";
-import { ArrowUpRight, MoveRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { journalPosts } from "@/lib/jurnal-data";
 
 export default function Home() {
-  const containerRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-
   return (
-    <main ref={containerRef} className="relative bg-transparent selection:bg-charcoal selection:text-bone scroll-smooth">
-      
-      {/* 1. Cinematic Hero - Movement: Scale & Reveal */}
-      <section className="relative h-screen flex flex-col justify-end items-start overflow-hidden">
-        <motion.div 
-          style={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <Image 
-            src="/assets/hero-lifestyle.png" 
-            alt="Interior Mewah" 
-            fill 
+    <main className="min-h-screen">
+      {/* HERO SECTION */}
+      <section className="relative h-[95vh] w-full flex items-center overflow-hidden">
+        {/* Background Image & Overlays */}
+        <div className="absolute inset-0 z-0 bg-brand-dark-bg">
+          <Image
+            src="/assets/artisteak_workshop_hero.png"
+            alt="Teak workshop in Jepara"
+            fill
+            className="object-cover opacity-60"
             priority
-            className="object-cover brightness-[0.75]"
           />
-          {/* Dual Overlay for maximum text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-60" />
-        </motion.div>
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-gr-5 pb-gr-6 mb-gr-4 flex justify-between items-end">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1"
-          >
-            <motion.h1 
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="text-white mb-gr-4 max-w-4xl leading-[0.9] uppercase font-serif drop-shadow-2xl"
-            >
-              KEINDAHAN <br /> YANG <br /> MENGAKAR.
-            </motion.h1>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="flex flex-col md:flex-row gap-gr-4 items-start md:items-center"
-            >
-              <p className="text-white text-2xl text-editorial max-w-xl drop-shadow-lg">
-                Meleburkan tradisi pertukangan Nusantara dengan presisi arsitektural modern. Jati berkelanjutan untuk hunian yang bernapas.
-              </p>
-              <div className="flex-1 h-[1px] bg-white/20 hidden md:block" />
-              <Link href="/koleksi" className="group flex items-center gap-gr-2 text-gold-muted hover:text-white transition-all text-[0.6rem] tracking-[0.4em] uppercase font-bold">
-                 Jelajahi <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <div className="hidden lg:flex flex-col items-end gap-gr-2 text-white/20 border-r border-white/10 pr-gr-4 mb-gr-4 select-none">
-             <span className="text-[0.6rem] tracking-[0.8em] font-bold uppercase rotate-90 origin-right translate-x-7 translate-y-12">ESTABLISHED</span>
-             <span className="text-gr-5 font-serif leading-none italic">1986</span>
+          {/* Gradient Overlay for Text Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark-bg/80 via-brand-dark-bg/40 to-transparent" />
+        </div>
+        {/* Content */}
+        <div className="relative z-10 w-full px-4 md:px-sp-6 lg:px-sp-12 mt-16">
+          <div className="max-w-3xl">
+            <span className="text-[10px] tracking-widest text-white/90 mb-6 uppercase block font-medium">
+              · Jepara, Indonesia
+            </span>
+            <h1 className="text-white mb-sp-3 leading-[1.05] drop-shadow-lg">
+              Furniture <br /> Built to <br /> Last Centuries.
+            </h1>
+            <p className="text-white/90 text-lg mb-sp-4 max-w-md font-light">
+              Handcrafted teak furniture, made by master artisans in Jepara since 1998.
+            </p>
+            <Link href="/catalog" className="inline-flex items-center gap-3 bg-brand-terracotta text-white px-8 py-4 text-xs font-semibold tracking-widest uppercase hover:bg-white hover:text-brand-terracotta transition-colors duration-300">
+              Explore Collection <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute left-gr-5 bottom-gr-4 flex items-center gap-gr-3 text-[0.5rem] tracking-[1em] text-white/30 uppercase vertical-text"
-        >
-          GULIR <div className="h-20 w-[1px] bg-white/20 animate-scroll-line" />
-        </motion.div>
       </section>
 
-      {/* 2. Heritage Statement - Variety: Offset Layout */}
-      <section className="py-gr-8 px-gr-5 bg-bone overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-gr-8 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="flex-1"
-          >
-            <h2 className="text-earth-deep mb-gr-4 leading-[1.1] uppercase">EMPAT DEKADE <br /> MENJAGA RASA.</h2>
-            <p className="text-justify-phi text-narrative drop-cap italic">
-              Berdiri sejak 1986 — Perjalanan kami bermula dari jantung Jawa Tengah, di mana setiap bibit jati dipilih bukan karena ukurannya, melainkan karena jiwanya. Hingga hari ini, kami terus menjaga warisan ini dengan memadukan teknik sambungan klasik dan garis desain modern yang bersih.
-            </p>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="flex-1 border-t md:border-t-0 md:border-l border-earth-deep/10 pt-gr-6 md:pt-0 md:pl-gr-8"
-          >
-             <div className="border-l-2 border-terracotta-accent pl-gr-4">
-                <p className="text-[0.6rem] font-bold tracking-[0.3em] text-terracotta-accent mb-2 uppercase italic">Filosofi Kami</p>
-                <p className="text-lg text-earth-deep/80 leading-relaxed font-serif">
-                   Kami percaya setiap keping kayu membawa ingatan. Misi kami adalah mengabadikan ingatan tersebut melalui rekayasa presisi dan sentuhan akhir alami.
-                </p>
-             </div>
-          </motion.div>
+      {/* MANIFESTO / PILL IMAGES SECTION (Refined Ethos) */}
+      <section className="py-sp-12 md:py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg relative overflow-hidden flex items-center justify-center min-h-[60vh]">
+        {/* Background Pattern Watermark - Fixed Scale */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-serif font-bold text-brand-text/[0.03] select-none pointer-events-none transform -rotate-6">
+           JPR
         </div>
-      </section>
 
-      {/* 3. Curated Collections Series - Movement: Staggered Entrance */}
-      <section className="py-gr-8 bg-charcoal text-bone px-gr-5 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto relative z-10 text-center">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex justify-between items-end mb-gr-7"
+            className="mb-sp-6"
           >
-            <h2 className="text-white font-serif leading-none uppercase">Koleksi Kurasi.</h2>
-            <span className="text-[0.6rem] tracking-[0.4em] opacity-70 uppercase font-bold">Pilih Garis Keturunan Anda</span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-brand-terracotta block font-bold">· Our Ethos</span>
           </motion.div>
-          
+
+          <h2 className="text-brand-text leading-[1.2] text-4xl md:text-5xl lg:text-6xl tracking-tight">
+            Furniture isn't just what occupies a 
+            <span className="italic font-serif text-brand-text/80"> room</span>, 
+            it’s how you shape the <span className="text-brand-terracotta italic text-5xl md:text-7xl">memory</span> of the space it lives in.
+          </h2>
+
           <motion.div 
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={{
-              initial: {},
-              animate: { transition: { staggerChildren: 0.3 } }
-            }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-gr-2"
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.3 }}
+             className="mt-sp-8"
           >
-             <motion.div variants={{ initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 } }}>
-               <motion.div 
-                whileHover={{ scale: 0.985 }}
-                className="group relative aspect-phi overflow-hidden bg-charcoal border border-white/5 cursor-pointer"
-               >
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute inset-0 p-gr-5 flex flex-col justify-between">
-                     <span className="text-[0.65rem] tracking-[0.5em] font-bold uppercase text-terracotta-accent">Seri 01 / Warisan</span>
-                     <div className="space-y-4">
-                       <h3 className="text-gr-5 leading-none uppercase">Meja Leluhur</h3>
-                       <div className="h-[1px] w-0 group-hover:w-full bg-white/20 transition-all duration-1000" />
-                       <p className="opacity-0 group-hover:opacity-60 transition-opacity text-[0.6rem] tracking-[0.3em] font-bold uppercase">Jati Solid / Poles Tangan</p>
-                     </div>
-                  </div>
-               </motion.div>
-             </motion.div>
-
-             <motion.div variants={{ initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 } }}>
-               <motion.div 
-                whileHover={{ scale: 0.985 }}
-                className="group relative aspect-phi overflow-hidden bg-charcoal border border-white/5 cursor-pointer"
-               >
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute inset-0 p-gr-5 flex flex-col justify-between">
-                     <span className="text-[0.65rem] tracking-[0.5em] font-bold uppercase text-gold-muted">Seri 02 / Minimalis</span>
-                     <div className="space-y-4">
-                       <h3 className="text-gr-5 leading-none uppercase">Konsol Ruang Hampa</h3>
-                       <div className="h-[1px] w-0 group-hover:w-full bg-white/20 transition-all duration-1000" />
-                       <p className="opacity-0 group-hover:opacity-60 transition-opacity text-[0.6rem] tracking-[0.3em] font-bold uppercase">Mahoni / Finis Arang</p>
-                     </div>
-                  </div>
-               </motion.div>
-             </motion.div>
-          </motion.div>
-
-          <div className="mt-gr-7 text-left block w-full">
-             <motion.div 
-                animate={{ x: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             >
-                <Link href="/koleksi" className="group inline-flex items-center gap-gr-4 text-[0.6rem] font-bold tracking-[0.6em] uppercase hover:text-gold-muted transition-all bg-transparent px-gr-4 py-gr-2 border border-white/20 hover:border-white/40 cursor-pointer">
-                   LIHAT KOLEKSI <MoveRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Material Library - Pattern: Horizontal Repeat */}
-      <section className="py-gr-6 px-gr-5 bg-bone relative overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gr-1 border-y border-earth-deep/10">
-            {['JATI', 'TREMBESI', 'MAHONI'].map((wood, i) => (
-             <motion.div 
-               key={i} 
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: i * 0.2 }}
-               className="group py-gr-6 px-gr-4 flex flex-col items-center text-center hover:bg-white hover:shadow-2xl transition-all duration-700 cursor-crosshair border-x border-transparent hover:border-bone/50"
-             >
-                <p className="text-[0.5rem] tracking-[0.8em] mb-gr-4 opacity-60 font-bold uppercase group-hover:text-terracotta-accent transition-colors">Species {i+1}</p>
-                <h4 className="text-gr-5 mb-gr-1 group-hover:tracking-[0.2em] transition-all duration-1000 uppercase font-serif">{wood}</h4>
-                <div className="w-12 h-[1px] bg-earth-deep group-hover:w-full transition-all duration-700 opacity-40" />
-                <p className="mt-gr-4 text-[0.65rem] tracking-[0.2em] uppercase font-bold leading-loose opacity-70 group-hover:opacity-100 transition-opacity">Kepadatan tinggi, alur serat organik, ketahanan cuaca tak lekang waktu.</p>
-             </motion.div>
-           ))}
-        </div>
-      </section>
-
-      {/* 5. The Atelier - Pattern: SVG Motif */}
-      <section className="relative py-gr-6 bg-bone px-gr-5 flex items-center overflow-hidden">
-        
-        <div className="absolute right-0 top-0 w-1/2 h-full opacity-10">
-          <Image src="/assets/technical-sketch.png" alt="Sketsa Teknis" fill className="object-contain" />
-        </div>
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="max-w-2xl"
-          >
-            <h2 className="mb-gr-4 italic font-serif uppercase tracking-tighter leading-[0.95]">&quot;PRESISI ADALAH <br /> SATU-SATUNYA <br /> ORNAMEN KAMI.&quot;</h2>
-            <p className="text-lg tracking-tight font-medium opacity-100 mb-gr-4">Studio kami di Jepara menggunakan standar arsitektural untuk memastikan setiap sambungan adalah mahakarya rekayasa.</p>
-            <Link href="/studio" className="px-gr-5 py-gr-3 border border-charcoal/10 text-[0.6rem] font-bold tracking-[0.5em] inline-flex items-center gap-gr-3 hover:bg-charcoal hover:text-bone hover:border-charcoal transition-all uppercase">
-               LIHAT BENGKEL KERJA <MoveRight size={16} />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 6. Bespoke Concierge - High Contrast Prestige View */}
-      <section className="py-gr-8 bg-earth-deep text-bone px-gr-5 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row gap-gr-8 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex-1"
-          >
-            <div className="flex items-center mb-gr-4">
-              <span className="text-[0.6rem] tracking-[0.6em] font-bold uppercase text-gold-muted">Program Kemitraan</span>
-            </div>
-            <h2 className="mb-gr-4 uppercase font-serif tracking-tight leading-none text-white -ml-[0.05em]">Penyelarasan <br /> Eksklusif.</h2>
-            <p className="text-gr-2 mb-gr-6 leading-relaxed text-bone/80 max-w-2xl font-editorial">
-              Kami berkolaborasi dengan arsitek dan desainer interior global dalam memebangun solusi furnitur khusus bagi ruang residensial dan komersial kelas atas yang menjunjung tinggi keaslian material.
+            <div className="h-px w-12 bg-brand-terracotta/40 mx-auto mb-sp-4" />
+            <p className="text-lg md:text-xl text-brand-text font-light max-w-2xl mx-auto leading-relaxed">
+              We seamlessly blend Javanese heritage with contemporary architectural lines, crafting not for the season, but for the century.
             </p>
-            <div className="flex flex-col sm:flex-row gap-gr-4">
-               <Link href="/kontak" className="bg-bone text-charcoal px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold uppercase hover:bg-gold-muted hover:text-earth-deep transition-all shadow-xl text-center">Konsultasi Proyek</Link>
-               <Link href="/portofolio-desainer" className="border border-bone/20 text-bone px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold hover:bg-bone hover:text-charcoal transition-all uppercase text-center">Portofolio Desainer</Link>
-            </div>
           </motion.div>
-        </div>
-        {/* Subtle background element */}
-        <div className="absolute right-0 bottom-0 text-[15rem] leading-none font-serif opacity-[0.03] select-none pointer-events-none translate-y-1/4">
-          KM
         </div>
       </section>
 
-      {/* 7. The Journal - Movement: Grid Stagger */}
-      <section className="py-gr-8 px-gr-5 bg-bone border-b border-earth-deep/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-gr-7">
-            <h2 className="font-serif uppercase">Catatan Kayu.</h2>
-            <Link href="/jurnal" className="text-[0.6rem] font-bold tracking-[0.4em] opacity-40 uppercase hover:opacity-100 transition-opacity">Semua Artikel</Link>
+      {/* FEATURED COLLECTIONS (Polished Bento Grid) */}
+      <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface border-t border-brand-text/5 text-brand-text">
+        <div className="flex justify-between items-center mb-sp-8 border-b border-brand-text/10 pb-4">
+          <h3 className="m-0 text-3xl">Featured Collections</h3>
+          <Link href="/catalog" className="text-[10px] font-bold tracking-widest uppercase hover:text-brand-terracotta transition-colors flex items-center gap-2">
+            Explore All <ArrowRight size={14} />
+          </Link>
+        </div>
+        
+        {/* Simplified & Standardized Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-sp-2 md:gap-sp-3 h-auto md:h-[600px]">
+          {/* Main Large Item */}
+          <Link href="/catalog/lounge" className="md:col-span-8 card-hard relative group h-[350px] md:h-full cursor-pointer block overflow-hidden border-brand-text/10">
+             <div className="absolute inset-0 bg-brand-dark-bg/20 group-hover:bg-brand-dark-bg/0 transition-colors duration-700 z-10" />
+             <Image src="/assets/artisteak_workshop_hero.png" alt="Lounge" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+             <div className="absolute bottom-6 left-6 z-20">
+                <span className="bg-brand-bg text-brand-text px-3 py-1 text-[9px] uppercase font-bold tracking-[0.2em] mb-2 inline-block">Living space</span>
+                <h4 className="text-white text-3xl m-0 drop-shadow-sm">The Kalpataru Lounge</h4>
+             </div>
+             <div className="absolute top-6 right-6 z-20 w-10 h-10 bg-brand-terracotta text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+               <ArrowRight size={18} />
+             </div>
+          </Link>
+          
+          {/* Right Stacked Items */}
+          <div className="md:col-span-4 flex flex-col gap-sp-2 md:gap-sp-3">
+             <Link href="/catalog/heritage-dining" className="card-hard flex-2 relative group p-6 flex flex-col justify-end cursor-pointer overflow-hidden border-brand-text/10 bg-brand-dark-bg">
+                <Image src="/assets/artisteak_artisan_hands.png" alt="Dining" fill className="object-cover opacity-50 group-hover:opacity-70 transition-all duration-700" />
+                <div className="relative z-20">
+                  <span className="bg-brand-terracotta text-white px-3 py-1 text-[9px] uppercase font-bold tracking-[0.2em] mb-2 inline-block">Dining</span>
+                   <h4 className="text-white text-xl m-0">Heritage Table</h4>
+                </div>
+             </Link>
+             
+             <Link href="/catalog" className="card-hard flex-1 p-6 flex flex-col justify-center relative overflow-hidden group border-brand-text/10 bg-brand-bg">
+                <div className="relative z-20">
+                  <span className="text-brand-terracotta text-[9px] uppercase font-bold tracking-widest mb-1 block">New Arrival</span>
+                  <h4 className="text-brand-text text-xl m-0 leading-tight">Masterpiece<br/>Edition 2026</h4>
+                  <div className="mt-4 text-[10px] font-bold uppercase tracking-widest border-b border-brand-text w-fit pb-1 group-hover:text-brand-terracotta group-hover:border-brand-terracotta transition-colors">
+                    Explore
+                  </div>
+                </div>
+                <div className="absolute -right-4 -bottom-4 text-7xl font-serif text-brand-text/[0.03] transform -rotate-12 group-hover:rotate-0 transition-transform duration-700">JPR</div>
+             </Link>
           </div>
-          <motion.div 
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={{
-              initial: {},
-              animate: { transition: { staggerChildren: 0.2 } }
-            }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-gr-4"
-          >
-             {journalPosts.slice(0, 3).map((post, i) => (
-                <motion.div 
-                  key={post.id} 
-                  variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
-                  className="group cursor-pointer border-b border-earth-deep/10 pb-gr-6 transition-all hover:border-terracotta-accent"
-                >
-                   <Link href={`/jurnal/${post.id}`}>
-                      <div className="aspect-phi-inverse mb-gr-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000 bg-charcoal/5">
-                         <Image 
-                            src={post.image} 
-                            alt={post.title} 
-                            fill 
-                            className="object-cover group-hover:scale-105 transition-transform duration-700"
-                         />
-                         <div className="absolute inset-0 bg-earth-deep opacity-10 group-hover:opacity-0 transition-opacity" />
-                      </div>
-                      <p className="text-[0.5rem] tracking-[0.5em] mb-gr-3 text-terracotta-accent font-bold uppercase">{post.category}</p>
-                      <h4 className="text-gr-2 leading-tight pr-gr-4 group-hover:text-terracotta-accent transition-all duration-500 mb-gr-4 uppercase font-serif">{post.title}</h4>
-                     <div className="flex items-center justify-between text-[0.6rem] font-bold opacity-30 group-hover:opacity-100 transition-all uppercase tracking-[0.2em]">
-                        <span>{post.date}</span>
-                        <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                     </div>
-                   </Link>
-                </motion.div>
-             ))}
-          </motion.div>
         </div>
       </section>
+
+      {/* HERITAGE & SCALE (Split layout) */}
+      <section className="bg-brand-bg">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Image Left */}
+          <div className="h-[500px] lg:h-auto bg-brand-terracotta relative flex items-center justify-center group overflow-hidden">
+             <Image src="/assets/artisteak_teak_grain_detail.png" alt="Wood texture" fill className="object-cover opacity-30 mix-blend-color-burn group-hover:scale-105 transition-transform duration-1000" />
+             <div className="z-10 p-12 max-w-md text-white text-center">
+               <h2 className="text-4xl md:text-5xl mb-6">Crafted by generations.</h2>
+               <p className="text-white/80 text-lg leading-relaxed">
+                 Every joint tells a story of absolute precision. Every golden grain is an authentic map of time.
+               </p>
+             </div>
+          </div>
+          
+          {/* Stats Right */}
+          <div className="bg-brand-dark-bg text-white py-sp-8 px-8 lg:px-sp-12 flex flex-col justify-center">
+             <span className="text-[10px] font-medium tracking-widest text-white/50 uppercase mb-sp-6 block">· Our Scale</span>
+             
+             <div className="flex flex-col">
+                <div className="border-b border-white/10 pb-6 mb-6">
+                  <h1 className="text-brand-terracotta mb-2">1998</h1>
+                  <p className="text-brand-dark-text m-0 uppercase tracking-widest text-xs font-semibold">Established Year</p>
+                </div>
+                <div className="border-b border-white/10 pb-6 mb-6">
+                  <h1 className="text-white mb-2">200+</h1>
+                  <p className="text-brand-dark-text m-0 uppercase tracking-widest text-xs font-semibold">Artisan Partners</p>
+                </div>
+                <div className="border-b border-white/10 pb-6 mb-6">
+                  <h1 className="text-white mb-2">40+</h1>
+                  <p className="text-brand-dark-text m-0 uppercase tracking-widest text-xs font-semibold">Countries Shipped</p>
+                </div>
+                <div className="pb-4">
+                  <h1 className="text-white mb-2">B2B / B2C</h1>
+                  <p className="text-brand-dark-text m-0 uppercase tracking-widest text-xs font-semibold">Market Focus</p>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THE ARTISTEAK STANDARD (Numbered List) */}
+      <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface">
+        <div className="max-w-5xl mx-auto">
+          <span className="text-[10px] font-medium uppercase tracking-widest text-brand-text-muted mb-sp-6 block text-center md:text-left">· The Artisteak Standard</span>
+          
+          <div className="flex flex-col">
+            {/* Item 1 */}
+            <div className="grid grid-cols-1 md:grid-cols-12 border-t border-brand-text/10 py-sp-4 gap-4 md:gap-8 hover:bg-brand-bg transition-colors p-4 -mx-4 rounded-md">
+               <div className="md:col-span-2">
+                  <span className="text-5xl font-serif text-brand-terracotta/40 italic">01</span>
+               </div>
+               <div className="md:col-span-8 flex flex-col justify-center">
+                  <h4 className="text-2xl mb-3 text-brand-text">Certified Teak Procurement</h4>
+                  <p className="max-w-xl text-brand-text-muted">Every slab of wood we use is exclusively sourced from Perhutani (Indonesian State Forestry Enterprise), ensuring a 100% legal, sustainable, and traceable supply chain. We only select Grade A-B mature teak for unparalleled strength.</p>
+               </div>
+            </div>
+            
+            {/* Item 2 */}
+            <div className="grid grid-cols-1 md:grid-cols-12 border-t border-brand-text/10 py-sp-4 gap-4 md:gap-8 hover:bg-brand-bg transition-colors p-4 -mx-4 rounded-md">
+               <div className="md:col-span-2">
+                  <span className="text-5xl font-serif text-brand-terracotta/40 italic">02</span>
+               </div>
+               <div className="md:col-span-8 flex flex-col justify-center">
+                  <h4 className="text-2xl mb-3 text-brand-text">Master Joinery Standards</h4>
+                  <p className="max-w-xl text-brand-text-muted">We reject modern shortcuts. Our pieces rely on traditional mortise, tenon, and dovetail joints perfected over centuries by Jepara craftsmen. This guarantees structural integrity that outlasts screws and glue.</p>
+               </div>
+            </div>
+            
+            {/* Item 3 */}
+            <div className="grid grid-cols-1 md:grid-cols-12 border-t border-brand-text/10 border-b py-sp-4 gap-4 md:gap-8 hover:bg-brand-bg transition-colors p-4 -mx-4 rounded-md mb-8">
+               <div className="md:col-span-2">
+                  <span className="text-5xl font-serif text-brand-terracotta/40 italic">03</span>
+               </div>
+               <div className="md:col-span-8 flex flex-col justify-center">
+                  <h4 className="text-2xl mb-3 text-brand-text">International Compliance</h4>
+                  <p className="max-w-xl text-brand-text-muted">Our finishing processes meet strict US and EU VOC-emission standards. Furthermore, all goods undergo rigorous V-Legal verification and specialized moisture-content kilning to survive diverse global climates without cracking.</p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
     </main>
   );
 }

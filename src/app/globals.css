@@ -1,7 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  /* Golden Ratio Spacing Scale (Base: 1rem) */
+  /* Artisteak Jepara Color Palette (Hybrid Vistr + Femme) */
+  --color-brand-bg: #fafaf8;
+  --color-brand-surface: #f2f0eb;
+  --color-brand-text: #1a1a18;
+  --color-brand-text-muted: #5c5a55;
+  --color-brand-accent: #c8a84b;
+  --color-brand-terracotta: #d25429;
+  
+  --color-brand-dark-bg: #141410;
+  --color-brand-dark-text: #e8e6df;
+  --color-brand-dark-surface: #1e1e1a;
+
+  /* Typography */
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+
+  /* Spacing Scale (8px base) */
+  --spacing-sp-1: 0.5rem;   /* 8px */
+  --spacing-sp-2: 1rem;     /* 16px */
+  --spacing-sp-3: 1.5rem;   /* 24px */
+  --spacing-sp-4: 2rem;     /* 32px */
+  --spacing-sp-6: 3rem;     /* 48px */
+  --spacing-sp-8: 4rem;     /* 64px */
+  --spacing-sp-12: 6rem;    /* 96px */
+  --spacing-sp-16: 8rem;    /* 128px */
+  
+  /* Temporarily restoring old Golden Ratio spacing to prevent layout crash while migrating */
   --spacing-gr-1: 0.25rem;
   --spacing-gr-2: 0.405rem;
   --spacing-gr-3: 0.655rem;
@@ -10,34 +36,11 @@
   --spacing-gr-6: 2.775rem;
   --spacing-gr-7: 4.49rem;
   --spacing-gr-8: 7.265rem;
-
-  /* Quiet Luxury Color Palette */
-  --color-bone: #f8f6f2;
-  --color-slate-deep: #1e293b;
-  --color-charcoal: #0f172a;
-  --color-earth-deep: #2d2621;
-  
-  /* Surgical Vibrant Accents */
-  --color-emerald-accent: #064e3b;
-  --color-terracotta-accent: #9a3412;
-  --color-gold-muted: #b4a284;
-
-  --font-serif: var(--font-cormorant);
-  --font-sans: var(--font-inter);
-
-  /* Golden Ratio Typography Scale */
-  --font-size-gr-1: 0.618rem;
-  --font-size-gr-2: 1rem;
-  --font-size-gr-3: 1.618rem;
-  --font-size-gr-4: 2.618rem;
-  --font-size-gr-5: 4.236rem;
-  --font-size-gr-6: 6.854rem;
 }
 
 :root {
-  --background: var(--color-bone);
-  --foreground: var(--color-charcoal);
-  --phi: 1.61803398875;
+  --background: var(--color-brand-bg);
+  --foreground: var(--color-brand-text);
 }
 
 @layer base {
@@ -45,89 +48,78 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    @apply antialiased;
+    @apply antialiased selection:bg-brand-terracotta selection:text-white;
   }
 
-  /* Golden Ratio Typography Scale - Serif Display */
-  h1 { font-family: var(--font-serif); font-size: 6.854rem; line-height: 1; @apply font-medium; }
-  h2 { font-family: var(--font-serif); font-size: 4.236rem; line-height: 1.1; @apply font-medium; }
-  h3 { font-family: var(--font-serif); font-size: 2.618rem; line-height: 1.2; @apply font-medium; }
-  h4 { font-family: var(--font-serif); font-size: 1.618rem; line-height: 1.3; @apply font-medium; }
-  p { font-size: 1rem; line-height: 1.618; @apply opacity-90; }
+  /* Architectural Serif Scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400; /* Playfair Display normal */
+    letter-spacing: -0.02em;
+  }
+
+  h1 { font-size: 4.5rem; line-height: 1.05; } /* 72px */
+  h2 { font-size: 3.5rem; line-height: 1.1; }  /* 56px */
+  h3 { font-size: 2.5rem; line-height: 1.15; } /* 40px */
+  h4 { font-size: 1.5rem; line-height: 1.2; }  /* 24px */
+  
+  p { font-size: 1rem; line-height: 1.7; @apply text-brand-text-muted; }
 
   @media (max-width: 768px) {
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2.618rem; }
-    h3 { font-size: 2rem; }
-    h4 { font-size: 1.5rem; }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.75rem; }
   }
 
-  /* Editorial Utilities */
-  .text-editorial {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
-    @apply opacity-90;
-  }
-
-  .text-narrative {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    line-height: 1.8;
-    letter-spacing: -0.01em;
-    @apply opacity-80;
-  }
-
-  .drop-cap::first-letter {
-    font-family: var(--font-serif);
-    float: left;
-    font-size: 5rem;
-    line-height: 1;
-    padding-right: 0.75rem;
-    font-weight: 600;
-    color: var(--color-terracotta-accent);
-    text-transform: uppercase;
-  }
-
-  .text-small-caps {
-    font-variant: small-caps;
-    letter-spacing: 0.1em;
-    font-weight: 500;
+  /* Thin dividers for editorial feel */
+  hr {
+    @apply border-t border-brand-text/10 my-sp-6;
   }
 }
 
-.text-justify-phi {
-  text-align: justify;
-  text-justify: inter-word;
+/* Custom Utilities */
+.bg-dark-section {
+  @apply bg-brand-dark-bg text-brand-dark-text;
 }
 
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.03;
-  z-index: 9999;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+.text-subheading {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  @apply text-brand-text-muted;
 }
 
-.aspect-phi {
-  aspect-ratio: 1.618 / 1;
+/* Form inputs editorial style (bottom border only) */
+.input-editorial {
+  @apply w-full bg-transparent border-b border-brand-text/20 py-2 text-brand-text focus:outline-none focus:border-brand-terracotta transition-colors placeholder:text-brand-text-muted/50;
 }
 
-.aspect-phi-inverse {
-  aspect-ratio: 1 / 1.618;
+/* Pill image inline for typography */
+.inline-pill-img {
+  @apply inline-block h-[1.1em] align-middle rounded-full object-cover mx-2 mb-1 shadow-sm;
 }
 
+/* Bento Grid classes */
+.bento-grid {
+  @apply grid gap-sp-2 md:gap-sp-3;
+}
+
+/* Hard edges for structural architecture vibe */
+.card-hard {
+  @apply rounded-none overflow-hidden bg-brand-surface border border-brand-text/5;
+}
+
+/* Navigation scroll transition */
 .sticky-nav {
-  @apply backdrop-blur-md transition-all duration-500 border-b border-transparent;
+  @apply fixed top-0 w-full z-50 transition-all duration-300;
 }
 
-.sticky-nav-scrolled {
-  @apply bg-white/80 border-bone/20 text-charcoal shadow-sm;
-  mix-blend-mode: normal !important;
+.sticky-nav.scrolled {
+  @apply bg-brand-bg/95 backdrop-blur-md border-b border-brand-text/10 shadow-sm py-3;
+}
+
+.sticky-nav:not(.scrolled) {
+  @apply py-5;
 }

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kayu Modern | The Art of Indonesian Heritage",
-  description: "Ultra-luxury, modern Indonesian heritage furniture. Sustainable Teak, Trembesi, and Mahoni craftsmanship for discerning spaces.",
-  keywords: ["Luxury Indonesian Furniture", "High-end Teak", "Modern Heritage Woodwork", "Bespoke Furniture Jakarta", "Architectural Woodwork"],
+  title: "Artisteak Jepara | Furniture Built to Last Centuries",
+  description: "Premium Indonesian furniture combining traditional Javanese craftsmanship with contemporary design sensibility. Handcrafted teak furniture from Jepara.",
+  keywords: ["Luxury Furniture", "Sustainably Sourced Teak", "Jepara Craftsmanship", "Architectural Woodwork", "Artisteak"],
 };
 
 import Navbar from "@/components/Navbar";
@@ -30,10 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-inter selection:bg-charcoal selection:text-bone bg-bone relative overflow-x-hidden">
-        <div className="noise-overlay pointer-events-none" />
+      <body className="min-h-full font-inter bg-brand-bg text-brand-text relative overflow-x-hidden">
         <Navbar />
         {children}
         <Footer />
