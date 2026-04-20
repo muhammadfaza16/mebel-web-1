@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-sp-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-[0.1em] font-medium text-white/90">
+        <div className="pt-sp-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] tracking-[0.2em] font-light text-white/50">
           <p>© 2026 Artisteak Jepara. Handcrafted in Indonesia.</p>
           <div className="flex gap-sp-4">
             <span className="cursor-pointer hover:text-brand-terracotta transition-colors">Terms of Service</span>
