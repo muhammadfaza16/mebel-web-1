@@ -27,33 +27,33 @@ export default function AboutPage() {
         <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }} className="max-w-4xl mx-auto">
           <span className="text-[10px] font-medium tracking-[0.3em] text-brand-terracotta uppercase mb-6 block">· Our Manifesto</span>
           <h1 className="text-4xl md:text-7xl text-white mb-8 font-serif leading-[1.1]">The soul of Teak. <br/> The hands of Jepara.</h1>
-          <p className="text-lg md:text-xl text-brand-dark-text/80 leading-relaxed font-light max-w-2xl mx-auto">
-            We don't just sell furniture. We preserve an ancestral rhythm of creation that has existed for centuries in the forests of Java.
+          <p className="text-lg md:text-2xl text-brand-dark-text/70 leading-relaxed font-light max-w-3xl mx-auto">
+            We don't just sell furniture. We preserve an <span className="font-serif italic text-white/90">ancestral rhythm</span> of creation that has existed for centuries in the forests of Java.
           </p>
         </motion.div>
       </section>
 
       {/* 2. THE ORIGIN (Split Layout - Balance & Proportion) */}
       <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative h-[400px] lg:h-auto overflow-hidden group">
+        <div className="relative h-[400px] lg:h-auto overflow-hidden group border-b lg:border-b-0 lg:border-r border-brand-text/10">
           <Image src="/assets/artisteak_workshop_hero.png" alt="Workshop Origin" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
         </div>
-        <div className="py-sp-8 px-4 md:px-sp-6 lg:px-sp-12 flex flex-col justify-center">
+        <div className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-16 flex flex-col justify-center bg-brand-surface">
           <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }}>
             <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· Our Roots</span>
-            <h2 className="mb-6">Established in 1998, driven by heritage.</h2>
-            <p className="mb-6 text-brand-text-muted">
+            <h2 className="mb-6 leading-[1.2] text-4xl">Established in <span className="font-serif italic text-brand-terracotta">1998</span>,<br/>driven by heritage.</h2>
+            <p className="mb-sp-6 text-brand-text-muted leading-relaxed text-lg">
               Artisteak Jepara was born from a desire to bridge the gap between world-class engineering and traditional Javanese woodcraft. What started as a small workshop near the Teak forests of Central Java has evolved into a global architectural partner.
             </p>
-            <div className="flex gap-sp-4 items-center">
+            <div className="flex gap-sp-6 items-center">
                <div className="text-center">
-                 <div className="text-3xl font-serif text-brand-terracotta">25+</div>
-                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted">Years</div>
+                 <div className="text-4xl font-serif text-brand-text mb-1">25+</div>
+                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted font-bold">Years of Mastery</div>
                </div>
-               <div className="h-8 w-px bg-brand-text/10" />
+               <div className="h-10 w-px bg-brand-text/10" />
                <div className="text-center">
-                 <div className="text-3xl font-serif text-brand-terracotta">200</div>
-                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted">Artisans</div>
+                 <div className="text-4xl font-serif text-brand-text mb-1">200</div>
+                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted font-bold">Local Artisans</div>
                </div>
             </div>
           </motion.div>
@@ -61,25 +61,25 @@ export default function AboutPage() {
       </section>
 
       {/* 3. MEET THE MAKERS (Pattern & Variety) */}
-      <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface">
+      <section className="py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg border-t border-brand-text/10">
         <div className="text-center mb-sp-8">
-           <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-2 block">· The People</span>
-           <h2 className="font-serif">The hands behind the craft.</h2>
+           <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· The People</span>
+           <h2 className="font-serif text-4xl md:text-5xl">The hands behind the craft.</h2>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-sp-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-sp-4">
           {artisans.map((artisan, index) => (
             <motion.div 
               key={index} 
               initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }}
-              className="card-hard bg-brand-bg group cursor-default"
+              className="card-hard bg-brand-surface group cursor-default border-brand-text/5 hover:border-brand-text/10 transition-colors"
             >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <Image src={artisan.img} alt={artisan.name} fill className="object-cover opacity-80 mix-blend-multiply transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" />
+              <div className="relative aspect-[4/5] overflow-hidden border-b border-brand-text/5 bg-brand-dark-bg/5">
+                <Image src={artisan.img} alt={artisan.name} fill className="object-cover transition-all duration-700 group-hover:scale-110" />
               </div>
               <div className="p-6">
-                <span className="text-[9px] uppercase tracking-widest text-brand-terracotta font-bold mb-1 block">{artisan.role}</span>
-                <h4 className="text-xl mb-3">{artisan.name}</h4>
+                <span className="text-[9px] uppercase tracking-widest text-brand-terracotta font-bold mb-2 block">{artisan.role}</span>
+                <h4 className="text-xl mb-3 text-brand-text">{artisan.name}</h4>
                 <p className="text-xs text-brand-text-muted leading-relaxed line-clamp-3">{artisan.bio}</p>
               </div>
             </motion.div>

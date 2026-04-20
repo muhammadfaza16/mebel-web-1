@@ -1,18 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight, ArrowLeft, Ruler } from "lucide-react";
+import { getProductById } from "@/lib/catalog-data";
 
 export default function ProductDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+  const slug = params.slug as string;
+  const product = getProductById(slug);
+
   const [activeTab, setActiveTab] = useState("materials");
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+
+  // If product not found, avoid crashing
+  useEffect(() => {
+    if (!product) {
+       router.push("/catalog");
+    }
+  }, [product, router]);
 
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
+
+  if (!product) return <div className="min-h-screen bg-brand-bg flex items-center justify-center text-brand-text">Loading...</div>;
+
+  const waMessage = encodeURIComponent(`Hello Artisteak, I am interested in inquiring about the bespoke "${product.name}". Could you provide more details?`);
+  const whatsappLink = `https://wa.me/6281234567890?text=${waMessage}`;
 
   return (
     <main className="min-h-screen pt-24 pb-sp-12 bg-brand-bg">
@@ -20,9 +40,9 @@ export default function ProductDetailPage() {
       <div className="px-4 md:px-sp-6 lg:px-sp-12 py-3 border-b border-brand-text/10 flex items-center gap-2 text-[10px] uppercase tracking-widest font-medium text-brand-text-muted">
          <Link href="/catalog" className="hover:text-brand-text transition-colors">Catalog</Link>
          <span>/</span>
-         <span className="text-brand-text">Living Space</span>
+         <span className="text-brand-text">{product.category}</span>
          <span>/</span>
-         <span className="text-brand-text border-b border-brand-text pb-[1px]">The Kalpataru Lounge</span>
+         <span className="text-brand-text border-b border-brand-text pb-[1px]">{product.name}</span>
       </div>
 
       {/* MAIN SPLIT (Balance & Proportion) */}
@@ -37,10 +57,10 @@ export default function ProductDetailPage() {
              className="relative w-full aspect-square md:aspect-[4/3] bg-brand-surface card-hard group overflow-hidden"
            >
               <Image 
-                src="/assets/artisteak_workshop_hero.png" 
-                alt="Main Product Angle" 
+                src={product.images[activeImageIdx].src} 
+                alt={`${product.name} - ${product.images[activeImageIdx].label}`} 
                 fill 
-                className="object-cover opacity-90 mix-blend-multiply group-hover:scale-105 transition-transform duration-1000"
+                className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-105"
               />
               <div className="absolute top-4 right-4 p-2 bg-brand-bg/80 backdrop-blur-sm shadow-sm text-xs border border-brand-text/10">
                  Hover to Zoom
@@ -52,13 +72,14 @@ export default function ProductDetailPage() {
               initial="hidden" animate="show" variants={{ show: { transition: { staggerChildren: 0.1 } } }}
               className="grid grid-cols-4 gap-sp-2"
            >
-             {[
-               { src: "/assets/artisteak_workshop_hero.png", label: "Ang.1" },
-               { src: "/assets/artisteak_teak_grain_detail.png", label: "Grain" },
-               { src: "/assets/artisteak_artisan_hands.png", label: "Joinery" }
-             ].map((thumb, i) => (
-                <motion.div key={i} variants={fadeUp} className="relative aspect-square bg-brand-surface card-hard cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
-                   <Image src={thumb.src} alt={thumb.label} fill className="object-cover mix-blend-multiply" />
+             {product.images.map((thumb, i) => (
+                <motion.div 
+                  key={i} 
+                  variants={fadeUp} 
+                  onClick={() => setActiveImageIdx(i)}
+                  className={`relative aspect-square bg-brand-surface card-hard cursor-pointer transition-all duration-300 ${activeImageIdx === i ? 'opacity-100 border-2 border-brand-terracotta' : 'opacity-50 hover:opacity-100'}`}
+                >
+                   <Image src={thumb.src} alt={thumb.label} fill className="object-cover" />
                    <span className="absolute bottom-1 left-1 bg-brand-bg/90 text-[8px] uppercase tracking-widest px-1">{thumb.label}</span>
                 </motion.div>
              ))}
@@ -74,15 +95,18 @@ export default function ProductDetailPage() {
           className="lg:col-span-5 p-4 md:p-sp-6 lg:p-sp-8 flex flex-col"
         >
            <motion.div variants={fadeUp} className="mb-sp-6">
-             <span className="text-[10px] uppercase font-semibold tracking-widest text-brand-text-muted mb-2 block">Living Space</span>
-             <h1 className="text-4xl md:text-5xl text-brand-text mb-4 leading-tight">The Kalpataru<br />Lounge Chair.</h1>
-             <p className="text-brand-text-muted text-lg">An absolute architectural statement. Hand-carved from century-old reclaimed Javanese teak, utilizing rigid mortise and tenon joinery for eternal stability.</p>
+             <span className="text-[10px] uppercase font-semibold tracking-widest text-brand-text-muted mb-2 block">{product.category}</span>
+             <h1 className="text-4xl md:text-5xl text-brand-text mb-4 leading-tight">{product.name}</h1>
+             <p className="text-brand-text-muted text-lg">{product.fullDescription}</p>
            </motion.div>
            
            {/* Price & Badge */}
-           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-sp-6">
-             <span className="text-2xl font-serif text-brand-text">IDR 18.500.000</span>
+           <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-sp-6">
+             <span className="text-2xl font-serif text-brand-text">{product.price}</span>
              <span className="px-3 py-1 bg-brand-terracotta text-white text-[9px] uppercase tracking-widest">Made to Order</span>
+             {product.isNew && (
+                <span className="px-3 py-1 border border-brand-terracotta text-brand-terracotta text-[9px] uppercase tracking-widest">New Arrival</span>
+             )}
            </motion.div>
 
            <hr className="my-0 border-brand-text/10 mb-sp-6" />
@@ -98,15 +122,15 @@ export default function ProductDetailPage() {
              <div className="grid grid-cols-3 gap-3">
                 <div className="border border-brand-text/20 p-2 relative">
                    <span className="text-[8px] text-brand-text-muted uppercase absolute top-1 left-2">Width</span>
-                   <div className="text-sm font-medium mt-3 text-center">85 cm</div>
+                   <div className="text-sm font-medium mt-3 text-center">{product.dimensions.width}</div>
                 </div>
                 <div className="border border-brand-text/20 p-2 relative">
                    <span className="text-[8px] text-brand-text-muted uppercase absolute top-1 left-2">Depth</span>
-                   <div className="text-sm font-medium mt-3 text-center">70 cm</div>
+                   <div className="text-sm font-medium mt-3 text-center">{product.dimensions.depth}</div>
                 </div>
                 <div className="border border-brand-text/20 p-2 relative text-brand-terracotta">
                    <span className="text-[8px] uppercase absolute top-1 left-2">Height</span>
-                   <div className="text-sm font-medium mt-3 text-center">75 cm</div>
+                   <div className="text-sm font-medium mt-3 text-center">{product.dimensions.height}</div>
                 </div>
              </div>
              <p className="text-[9px] italic text-brand-text-muted mt-2 font-serif text-center">Custom dimensions available upon request.</p>
@@ -115,34 +139,25 @@ export default function ProductDetailPage() {
            {/* Finishing Selection (Pattern) */}
            <motion.div variants={fadeUp} className="mb-sp-8">
              <h4 className="text-xs uppercase tracking-widest font-medium text-brand-text mb-4">Wood Finish</h4>
-             <div className="flex gap-4 items-center">
-                <div className="flex flex-col items-center gap-2 cursor-pointer">
-                  <div className="w-8 h-8 rounded-full bg-[#D4CCC0] border border-brand-text/10 flex items-center justify-center shadow-sm relative">
-                    <div className="absolute inset-x-0 -bottom-8 text-[9px] font-medium text-brand-text">Raw</div>
+              <div className="flex gap-4 items-center">
+                {product.finishes.map((finish, idx) => (
+                  <div key={idx} className="flex flex-col items-center gap-2 cursor-pointer group">
+                    <div className={`w-8 h-8 rounded-full ${finish.colorClass} border border-brand-text/10 flex items-center justify-center shadow-sm relative group-hover:scale-110 transition-transform`}>
+                      <div className={`absolute inset-x-0 -bottom-6 text-[9px] font-medium text-center opacity-0 group-hover:opacity-100 transition-opacity ${finish.textColorClass}`}>{finish.name}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-col items-center gap-2 cursor-pointer">
-                  <div className="w-8 h-8 rounded-full bg-[#A8885B] border border-brand-text p-[2px] shadow-sm relative">
-                    <div className="w-full h-full rounded-full bg-[#A8885B]"></div>
-                    <div className="absolute inset-x-0 -bottom-8 text-[9px] font-medium text-brand-text text-center font-bold">Honey</div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-2 cursor-pointer">
-                  <div className="w-8 h-8 rounded-full bg-[#4A3219] border border-brand-text/10 shadow-sm relative">
-                     <div className="absolute inset-x-0 -bottom-8 text-[9px] font-medium text-brand-text-muted text-center">Ebony</div>
-                  </div>
-                </div>
-             </div>
+                ))}
+              </div>
            </motion.div>
 
            {/* CTAs */}
            <motion.div variants={fadeUp} className="mt-auto flex flex-col sm:flex-row gap-3 pt-6">
-              <button className="flex-1 bg-brand-text text-brand-bg px-6 py-4 text-xs font-semibold uppercase tracking-widest hover:bg-brand-terracotta hover:text-white transition-colors duration-300">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-brand-text text-brand-bg px-6 py-4 text-xs font-semibold uppercase tracking-widest hover:bg-brand-terracotta hover:text-white transition-colors duration-300 text-center flex items-center justify-center">
                 Inquire Now
-              </button>
-              <button className="flex-1 border border-brand-text px-6 py-4 text-xs font-semibold uppercase tracking-widest hover:bg-brand-surface transition-colors duration-300">
+              </a>
+              <Link href="/custom-order" className="flex-1 border border-brand-text px-6 py-4 text-xs font-semibold uppercase tracking-widest hover:bg-brand-surface transition-colors duration-300 text-center flex items-center justify-center">
                 Custom Order
-              </button>
+              </Link>
            </motion.div>
         </motion.div>
       </section>
@@ -171,15 +186,10 @@ export default function ProductDetailPage() {
                <motion.div key="materials" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid md:grid-cols-2 gap-sp-6 max-w-5xl">
                  <div>
                    <h3 className="text-2xl mb-4 font-serif text-brand-text">The Origin of Strength</h3>
-                   <p className="mb-4">Crafted exclusively from Grade A mature Tectona Grandis (Teak) harvested from government-regulated plantations in Central Java. This guarantees sustainable yield and supreme durability against weather, pests, and rot.</p>
-                   <ul className="list-disc pl-5 text-sm text-brand-text-muted space-y-2">
-                     <li>FSC Certified Wood completely traceable.</li>
-                     <li>Kiln-dried to precisely 8-12% moisture content to prevent splitting.</li>
-                     <li>Finished with natural hardwax oil combining aesthetics and protection.</li>
-                   </ul>
+                   <p className="mb-4 text-brand-text-muted leading-relaxed">{product.tabs.materials}</p>
                  </div>
-                 <div className="relative aspect-video card-hard bg-brand-surface">
-                   <Image src="/assets/artisteak_teak_grain_detail.png" alt="Materials" fill className="object-cover opacity-80 mix-blend-multiply" />
+                 <div className="relative aspect-video card-hard bg-brand-surface overflow-hidden">
+                   <Image src={product.images[0]?.src || "/assets/artisteak_teak_grain_detail.png"} alt="Materials" fill className="object-cover transition-transform duration-700 hover:scale-105" />
                  </div>
                </motion.div>
              )}
@@ -187,17 +197,14 @@ export default function ProductDetailPage() {
              {activeTab === 'maintenance' && (
                <motion.div key="maintenance" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="max-w-3xl">
                  <h3 className="text-2xl mb-4 font-serif text-brand-text">Care Instructions</h3>
-                 <p className="mb-4 text-brand-text-muted">Teak is famously low-maintenance, but preserving its indoor finish requires occasional care.</p>
-                 <div className="space-y-4">
-                    <div className="border-b border-brand-text/10 pb-4">
-                       <h5 className="font-semibold text-sm mb-1">Weekly Dusting</h5>
-                       <p className="text-sm text-brand-text-muted">Wipe down with a dry, soft microfiber cloth.</p>
-                    </div>
-                    <div className="border-b border-brand-text/10 pb-4">
-                       <h5 className="font-semibold text-sm mb-1">Spills & Stains</h5>
-                       <p className="text-sm text-brand-text-muted">Clean immediately with a mild natural soap solution. Strictly avoid harsh chemical cleaners which strip the natural oils.</p>
-                    </div>
-                 </div>
+                 <p className="mb-4 text-brand-text-muted leading-relaxed">{product.tabs.maintenance}</p>
+               </motion.div>
+             )}
+
+             {activeTab === 'shipping' && (
+               <motion.div key="shipping" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="max-w-3xl">
+                 <h3 className="text-2xl mb-4 font-serif text-brand-text">Shipping & Delivery</h3>
+                 <p className="mb-4 text-brand-text-muted leading-relaxed">{product.tabs.shipping}</p>
                </motion.div>
              )}
            </AnimatePresence>

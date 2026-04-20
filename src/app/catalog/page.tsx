@@ -6,15 +6,7 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, ChevronDown, Filter } from "lucide-react";
 
-// Mock Product Data
-const products = [
-  { id: "heritage-dining", name: "Heritage Dining Table", category: "Dining", material: "Solid Teak", price: "By Inquiry", img: "/assets/artisteak_workshop_hero.png" },
-  { id: "kalpataru-lounge", name: "The Kalpataru Lounge", category: "Living", material: "Teak & Rattan", price: "By Inquiry", img: "/assets/artisteak_teak_grain_detail.png" },
-  { id: "majapahit-bed", name: "Majapahit Platform Bed", category: "Bedroom", material: "Solid Trembesi", price: "By Inquiry", img: "/assets/artisteak_artisan_hands.png", isNew: true },
-  { id: "senayan-chair", name: "Senayan Accent Chair", category: "Living", material: "Teak & Leather", price: "By Inquiry", img: "/assets/artisteak_teak_grain_detail.png" },
-  { id: "batavia-cabinet", name: "Batavia Display Cabinet", category: "Storage", material: "Mahogany", price: "By Inquiry", img: "/assets/artisteak_workshop_hero.png" },
-  { id: "bali-stool", name: "Bali Counter Stool", category: "Dining", material: "Solid Teak", price: "By Inquiry", img: "/assets/artisteak_artisan_hands.png" },
-];
+import { catalogProducts as products } from "@/lib/catalog-data";
 
 export default function CatalogPage() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
@@ -188,7 +180,7 @@ export default function CatalogPage() {
                       <div className="absolute inset-0 bg-brand-dark-bg/0 group-hover:bg-brand-dark-bg/5 transition-colors z-10" />
                       {/* Image hover scale for Movement */}
                       <Image 
-                        src={p.img} 
+                        src={p.images?.[0]?.src || "/assets/artisteak_workshop_hero.png"} 
                         alt={p.name} 
                         fill 
                         className="object-cover transition-all duration-700 group-hover:scale-105" 
