@@ -117,7 +117,7 @@ export default function Home() {
                 </div>
              </Link>
              
-             <Link href="/catalog" className="card-hard flex-1 p-6 flex flex-col justify-center relative overflow-hidden group border-brand-text/10 bg-brand-bg">
+             <Link href="/catalog" className="card-hard flex-1 px-6 py-sp-4 flex flex-col justify-center relative overflow-hidden group border-brand-text/10 bg-brand-bg">
                 <div className="relative z-20">
                   <span className="text-brand-terracotta text-[9px] uppercase font-bold tracking-widest mb-1 block">New Arrival</span>
                   <h4 className="text-brand-text text-xl m-0 leading-tight">Masterpiece<br/>Edition 2026</h4>
