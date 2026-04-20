@@ -26,8 +26,8 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 w-full px-4 md:px-sp-6 lg:px-sp-12 mt-16">
           <div className="max-w-3xl">
-            <span className="text-[10px] tracking-widest text-white/90 mb-6 uppercase block font-medium">
-              · Jepara, Indonesia
+            <span className="text-[10px] tracking-widest text-white/90 mb-6 uppercase flex items-center gap-2 font-medium">
+              <span className="w-1.5 h-1.5 bg-brand-terracotta rounded-full animate-pulse shadow-[0_0_8px_rgba(210,84,41,0.6)]" /> Jepara, Indonesia
             </span>
             <h1 className="text-white mb-sp-3 leading-[1.05] drop-shadow-lg">
               Furniture <br /> Built to <br /> Last Centuries.
