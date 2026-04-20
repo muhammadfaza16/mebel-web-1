@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
@@ -18,6 +18,25 @@ const products = [
 
 export default function CatalogPage() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
+
+  // Derive rooms and materials from data dynamically for sustainability
+  const rooms = Array.from(new Set(products.map(p => p.category)));
+  const materials = Array.from(new Set(products.map(p => p.material)));
+
+  const filteredProducts = useMemo(() => {
+    return products.filter(p => {
+      const roomMatch = !selectedRoom || p.category === selectedRoom;
+      const materialMatch = !selectedMaterial || p.material === selectedMaterial;
+      return roomMatch && materialMatch;
+    });
+  }, [selectedRoom, selectedMaterial]);
+
+  const clearFilters = () => {
+    setSelectedRoom(null);
+    setSelectedMaterial(null);
+  };
 
   // Framer Motion Variants for Movement & Hierarchy
   const containerVariants: Variants = {
@@ -61,14 +80,30 @@ export default function CatalogPage() {
               
               {/* Filter Group: Room */}
               <div>
-                <h4 className="text-xs uppercase tracking-widest font-medium mb-sp-3 text-brand-text">Rooms</h4>
+                <div className="flex justify-between items-center mb-sp-3">
+                  <h4 className="text-xs uppercase tracking-widest font-medium text-brand-text">Rooms</h4>
+                  {(selectedRoom || selectedMaterial) && (
+                    <button 
+                      onClick={clearFilters}
+                      className="text-[9px] uppercase tracking-tighter text-brand-terracotta font-bold hover:underline"
+                    >
+                      Reset
+                    </button>
+                  )}
+                </div>
                 <div className="flex flex-col gap-3">
-                  {['Living', 'Dining', 'Bedroom', 'Workspace'].map((room) => (
-                    <label key={room} className="flex items-center gap-3 cursor-pointer group">
-                      <div className="w-4 h-4 border border-brand-text/30 flex items-center justify-center transition-colors group-hover:border-brand-terracotta">
-                        {room === 'Living' && <div className="w-2 h-2 bg-brand-terracotta"></div>}
+                  {rooms.map((room) => (
+                    <label 
+                      key={room} 
+                      onClick={() => setSelectedRoom(selectedRoom === room ? null : room)}
+                      className="flex items-center gap-3 cursor-pointer group"
+                    >
+                      <div className={`w-4 h-4 border border-brand-text/30 flex items-center justify-center transition-colors group-hover:border-brand-terracotta ${selectedRoom === room ? "border-brand-terracotta" : ""}`}>
+                        {selectedRoom === room && <div className="w-2 h-2 bg-brand-terracotta"></div>}
                       </div>
-                      <span className="text-sm text-brand-text-muted group-hover:text-brand-text transition-colors">{room}</span>
+                      <span className={`text-sm transition-colors ${selectedRoom === room ? "text-brand-text font-medium" : "text-brand-text-muted group-hover:text-brand-text"}`}>
+                        {room}
+                      </span>
                     </label>
                   ))}
                 </div>
@@ -80,10 +115,18 @@ export default function CatalogPage() {
               <div>
                 <h4 className="text-xs uppercase tracking-widest font-medium mb-sp-3 text-brand-text">Material</h4>
                 <div className="flex flex-col gap-3">
-                  {['Solid Teak', 'Trembesi', 'Mahogany', 'Mindi', 'Rattan Weave'].map((mat) => (
-                    <label key={mat} className="flex items-center gap-3 cursor-pointer group">
-                      <div className="w-4 h-4 border border-brand-text/30 flex items-center justify-center transition-colors group-hover:border-brand-terracotta" />
-                      <span className="text-sm text-brand-text-muted group-hover:text-brand-text transition-colors">{mat}</span>
+                  {materials.map((mat) => (
+                    <label 
+                      key={mat} 
+                      onClick={() => setSelectedMaterial(selectedMaterial === mat ? null : mat)}
+                      className="flex items-center gap-3 cursor-pointer group"
+                    >
+                      <div className={`w-4 h-4 border border-brand-text/30 flex items-center justify-center transition-colors group-hover:border-brand-terracotta ${selectedMaterial === mat ? "border-brand-terracotta" : ""}`}>
+                        {selectedMaterial === mat && <div className="w-2 h-2 bg-brand-terracotta" />}
+                      </div>
+                      <span className={`text-sm transition-colors ${selectedMaterial === mat ? "text-brand-text font-medium" : "text-brand-text-muted group-hover:text-brand-text"}`}>
+                        {mat}
+                      </span>
                     </label>
                   ))}
                 </div>
@@ -113,7 +156,7 @@ export default function CatalogPage() {
             
             {/* Sort Bar */}
             <div className="flex justify-between items-center mb-sp-6 pb-2 border-b border-brand-text/10">
-               <span className="text-xs text-brand-text-muted">Showing 1-6 of 24 pieces</span>
+               <span className="text-xs text-brand-text-muted">Showing {filteredProducts.length} of {products.length} pieces</span>
                <div className="flex items-center gap-4">
                   <span className="text-xs uppercase tracking-widest text-brand-text-muted">Sort by</span>
                   <div className="flex items-center gap-2 cursor-pointer pb-1 border-b border-brand-text text-sm">
@@ -129,7 +172,7 @@ export default function CatalogPage() {
               animate="show"
               className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-sp-2 md:gap-sp-3"
             >
-              {products.map((p, i) => (
+              {filteredProducts.map((p, i) => (
                 <motion.div key={p.id} variants={itemVariants}>
                   <Link href={`/catalog/${p.id}`} className="block card-hard bg-brand-bg group cursor-pointer relative h-full flex flex-col">
                     
