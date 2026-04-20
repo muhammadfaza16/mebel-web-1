@@ -59,10 +59,12 @@ export default function Home() {
             <span className="text-[10px] tracking-[0.3em] uppercase text-brand-terracotta block font-bold">· Our Ethos</span>
           </motion.div>
 
-          <h2 className="text-brand-text leading-[1.2] text-4xl md:text-5xl lg:text-6xl tracking-tight">
-            Furniture isn't just what occupies a 
-            <span className="italic font-serif text-brand-text/80"> room</span>, 
-            it’s how you shape the <span className="text-brand-terracotta italic text-5xl md:text-7xl">memory</span> of the space it lives in.
+          <h2 className="text-brand-text leading-[1.3] text-3xl md:text-5xl lg:text-6xl tracking-tight">
+            Furniture isn't just what 
+            <span className="italic font-serif text-brand-text/60"> occupies</span> a room, <br className="hidden md:block" />
+            it’s how you <span className="font-serif italic">curate</span> the 
+            <span className="text-brand-terracotta italic text-5xl md:text-8xl transition-all hover:scale-105 duration-500 inline-block px-2">memory</span> <br className="hidden md:block" />
+            of the <span className="underline decoration-brand-terracotta/30 underline-offset-8">space</span> it lives in.
           </h2>
 
           <motion.div 
