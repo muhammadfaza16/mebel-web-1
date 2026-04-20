@@ -114,17 +114,32 @@ export default function CustomOrderPage() {
                      <div 
                        key={type.id} 
                        onClick={() => setSelectedType(type.id)}
-                       className={`border p-4 text-center cursor-pointer transition-all duration-300 card-hard ${
+                       className={`relative border p-6 text-center cursor-pointer transition-all duration-500 card-hard ${
                          selectedType === type.id 
-                         ? "border-brand-terracotta bg-brand-terracotta/5 shadow-sm" 
-                         : "border-brand-text/10 bg-brand-surface hover:border-brand-text/30 hover:bg-brand-bg"
+                         ? "border-2 border-brand-terracotta bg-brand-terracotta/[0.03] shadow-md -translate-y-1" 
+                         : "border-brand-text/10 bg-brand-surface hover:border-brand-text/30"
                        }`}
                      >
-                        <div className="relative h-24 mb-4 opacity-80 mix-blend-multiply overflow-hidden">
+                        {/* Selection Badge */}
+                        <AnimatePresence>
+                          {selectedType === type.id && (
+                            <motion.div 
+                              initial={{ opacity: 0, scale: 0.5 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              className="absolute top-2 right-2 w-5 h-5 bg-brand-terracotta text-white flex items-center justify-center rounded-none z-30"
+                            >
+                               <Check size={12} strokeWidth={3} />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                        <div className={`relative h-28 mb-4 overflow-hidden transition-all duration-500 ${selectedType === type.id ? 'opacity-100' : 'opacity-60 grayscale-[50%] mix-blend-multiply'}`}>
                            <Image src={type.img} alt={type.name} fill className="object-cover" />
                         </div>
-                        <div className={`h-[1px] w-1/2 mx-auto mb-3 transition-colors ${selectedType === type.id ? "bg-brand-terracotta" : "bg-brand-text/20"}`} />
-                        <h5 className="text-sm font-medium uppercase tracking-widest text-brand-text">{type.name}</h5>
+                        <div className={`h-1 w-8 mx-auto mb-3 transition-all duration-500 ${selectedType === type.id ? "bg-brand-terracotta w-12" : "bg-brand-text/10"}`} />
+                        <h5 className={`text-sm font-bold uppercase tracking-widest transition-colors ${selectedType === type.id ? "text-brand-text" : "text-brand-text-muted"}`}>
+                          {type.name}
+                        </h5>
                      </div>
                   ))}
                </div>
