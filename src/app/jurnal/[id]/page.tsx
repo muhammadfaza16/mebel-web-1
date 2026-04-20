@@ -93,11 +93,23 @@ export default function JournalDetail() {
 
             {/* Main Body Content */}
             <article className="lg:col-span-8 lg:col-start-5 space-y-gr-7">
-               {post.content.map((para, i) => (
-                  <p key={i} className="text-xl leading-[1.8] text-earth-deep/90 text-justify-phi tracking-tight">
-                     {para}
-                  </p>
-               ))}
+               {post.content.map((para, i) => {
+                  const parts = para.split(/(\*\*.*?\*\*)/g);
+                  return (
+                    <p key={i} className="text-xl leading-[1.8] text-earth-deep/90 text-justify-phi tracking-tight">
+                       {parts.map((part, index) => {
+                          if (part.startsWith("**") && part.endsWith("**")) {
+                             return (
+                               <strong key={index} className="text-earth-deep font-bold font-serif uppercase tracking-widest text-lg block mb-2">
+                                 {part.slice(2, -2)}
+                               </strong>
+                             );
+                          }
+                          return part;
+                       })}
+                    </p>
+                  );
+               })}
 
                {post.quote && (
                   <motion.div 
