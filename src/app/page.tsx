@@ -106,8 +106,9 @@ export default function Home() {
           
           {/* Right Stacked Items */}
           <div className="md:col-span-4 flex flex-col gap-sp-2 md:gap-sp-3">
-             <Link href="/catalog/heritage-dining" className="card-hard flex-2 relative group p-6 flex flex-col justify-end cursor-pointer overflow-hidden border-brand-text/10 bg-brand-dark-bg">
-                <Image src="/assets/artisteak_artisan_hands.png" alt="Dining" fill className="object-cover opacity-50 group-hover:opacity-70 transition-all duration-700" />
+             <Link href="/catalog/heritage-dining" className="card-hard flex-2 relative group p-6 flex flex-col justify-end cursor-pointer overflow-hidden border-brand-text/10">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark-bg/80 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                <Image src="/assets/artisteak_artisan_hands.png" alt="Dining" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-700" />
                 <div className="relative z-20">
                   <span className="bg-brand-terracotta text-white px-3 py-1 text-[9px] uppercase font-bold tracking-[0.2em] mb-2 inline-block">Dining</span>
                    <h4 className="text-white text-xl m-0">Heritage Table</h4>

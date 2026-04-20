@@ -184,14 +184,14 @@ export default function CatalogPage() {
                     )}
                     
                     {/* Image Area */}
-                    <div className="relative h-64 md:h-80 w-full overflow-hidden border-b border-brand-text/5">
-                      <div className="absolute inset-0 bg-brand-dark-bg/5 group-hover:bg-transparent transition-colors z-10" />
+                    <div className="relative h-64 md:h-80 w-full overflow-hidden border-b border-brand-text/5 bg-brand-surface">
+                      <div className="absolute inset-0 bg-brand-dark-bg/0 group-hover:bg-brand-dark-bg/5 transition-colors z-10" />
                       {/* Image hover scale for Movement */}
                       <Image 
                         src={p.img} 
                         alt={p.name} 
                         fill 
-                        className="object-cover opacity-80 mix-blend-multiply group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+                        className="object-cover transition-all duration-700 group-hover:scale-105" 
                       />
                     </div>
                     
