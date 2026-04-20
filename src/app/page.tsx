@@ -36,9 +36,11 @@ export default function Home() {
             alt="Interior Mewah" 
             fill 
             priority
-            className="object-cover brightness-[0.85]"
+            className="object-cover brightness-[0.75]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          {/* Dual Overlay for maximum text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-60" />
         </motion.div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-gr-5 pb-gr-6 mb-gr-4 flex justify-between items-end">
@@ -52,7 +54,7 @@ export default function Home() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-white mb-gr-4 max-w-4xl leading-[0.9] uppercase font-serif"
+              className="text-white mb-gr-4 max-w-4xl leading-[0.9] uppercase font-serif drop-shadow-2xl"
             >
               KEINDAHAN <br /> YANG <br /> MENGAKAR.
             </motion.h1>
@@ -62,7 +64,7 @@ export default function Home() {
               transition={{ delay: 1.2 }}
               className="flex flex-col md:flex-row gap-gr-4 items-start md:items-center"
             >
-              <p className="text-white text-gr-2 font-medium tracking-wide max-w-md">
+              <p className="text-white text-2xl text-editorial max-w-xl drop-shadow-lg">
                 Meleburkan tradisi pertukangan Nusantara dengan presisi arsitektural modern. Jati berkelanjutan untuk hunian yang bernapas.
               </p>
               <div className="flex-1 h-[1px] bg-white/20 hidden md:block" />
@@ -99,8 +101,8 @@ export default function Home() {
             className="flex-1"
           >
             <h2 className="text-earth-deep mb-gr-4 leading-[1.1] uppercase">EMPAT DEKADE <br /> MENJAGA RASA.</h2>
-            <p className="text-justify-phi font-medium opacity-80">
-              BERDIRI SEJAK 1986 — PERJALANAN KAMI BERMULA DARI JANTUNG JAWA TENGAH, DI MANA SETIAP BIBIT JATI DIPILIH BUKAN KARENA UKURANNYA, MELAINKAN KARENA JIWANYA. HINGGA HARI INI, KAMI TERUS MENJAGA WARISAN INI DENGAN MEMADUKAN TEKNIK SAMBUNGAN KLASIK DAN GARIS DESAIN MODERN YANG BERSIH.
+            <p className="text-justify-phi text-narrative drop-cap italic">
+              Berdiri sejak 1986 — Perjalanan kami bermula dari jantung Jawa Tengah, di mana setiap bibit jati dipilih bukan karena ukurannya, melainkan karena jiwanya. Hingga hari ini, kami terus menjaga warisan ini dengan memadukan teknik sambungan klasik dan garis desain modern yang bersih.
             </p>
           </motion.div>
           <motion.div 
@@ -235,8 +237,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Bespoke Concierge - Ultra Minimalist View */}
-      <section className="py-gr-8 bg-gold-muted text-earth-deep px-gr-5 relative overflow-hidden">
+      {/* 6. Bespoke Concierge - High Contrast Prestige View */}
+      <section className="py-gr-8 bg-earth-deep text-bone px-gr-5 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row gap-gr-8 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -245,17 +247,21 @@ export default function Home() {
             className="flex-1"
           >
             <div className="flex items-center mb-gr-4">
-              <span className="text-[0.6rem] tracking-[0.6em] font-bold uppercase opacity-60">Program Kemitraan</span>
+              <span className="text-[0.6rem] tracking-[0.6em] font-bold uppercase text-gold-muted">Program Kemitraan</span>
             </div>
-            <h2 className="mb-gr-4 uppercase font-serif tracking-tight leading-none">Penyelarasan <br /> Eksklusif.</h2>
-            <p className="text-gr-2 mb-gr-6 leading-relaxed opacity-70 max-w-2xl">
-              Kami berkolaborasi dengan arsitek dan desainer interior global produsen solusi furnitur khusus bagi ruang residensial dan komersial kelas atas yang menjunjung tinggi keaslian material.
+            <h2 className="mb-gr-4 uppercase font-serif tracking-tight leading-none text-white -ml-[0.05em]">Penyelarasan <br /> Eksklusif.</h2>
+            <p className="text-gr-2 mb-gr-6 leading-relaxed text-bone/80 max-w-2xl font-editorial">
+              Kami berkolaborasi dengan arsitek dan desainer interior global dalam memebangun solusi furnitur khusus bagi ruang residensial dan komersial kelas atas yang menjunjung tinggi keaslian material.
             </p>
             <div className="flex flex-col sm:flex-row gap-gr-4">
-               <Link href="/kontak" className="bg-charcoal text-bone px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold uppercase hover:bg-earth-deep transition-all shadow-xl text-center">Konsultasi Proyek</Link>
-               <Link href="/portofolio-desainer" className="border border-charcoal/20 px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold hover:bg-charcoal hover:text-bone transition-all uppercase text-center">Portofolio Desainer</Link>
+               <Link href="/kontak" className="bg-bone text-charcoal px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold uppercase hover:bg-gold-muted hover:text-earth-deep transition-all shadow-xl text-center">Konsultasi Proyek</Link>
+               <Link href="/portofolio-desainer" className="border border-bone/20 text-bone px-gr-5 py-gr-4 text-[0.6rem] tracking-[0.5em] font-bold hover:bg-bone hover:text-charcoal transition-all uppercase text-center">Portofolio Desainer</Link>
             </div>
           </motion.div>
+        </div>
+        {/* Subtle background element */}
+        <div className="absolute right-0 bottom-0 text-[15rem] leading-none font-serif opacity-[0.03] select-none pointer-events-none translate-y-1/4">
+          KM
         </div>
       </section>
 

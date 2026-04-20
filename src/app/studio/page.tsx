@@ -45,7 +45,7 @@ export default function StudioPage() {
             className="flex flex-col justify-center"
            >
               <h2 className="text-earth-deep leading-none uppercase font-serif mb-gr-6 italic">Empat Dekade <br /> Tangan Teruji.</h2>
-              <p className="text-lg text-earth-deep/70 max-w-lg leading-relaxed">
+              <p className="text-2xl text-editorial text-earth-deep/90 max-w-lg leading-relaxed">
                  Terletak di pusat pertukangan Nusantara, studio kami di Jepara bukan sekadar tempat produksi. Ini adalah laboratorium di mana tradisi sambungan klasik bertemu dengan kalkulasi arsitektural.
               </p>
            </motion.div>
@@ -74,7 +74,7 @@ export default function StudioPage() {
                 <h2 className="text-white uppercase font-serif tracking-tighter mb-gr-4 leading-none">Presisi <br /> Arsitektural.</h2>
                 <div className="h-1 lg:h-2 w-32 bg-gold-muted mb-gr-4" />
              </div>
-             <p className="flex-1 text-bone/60 max-w-sm text-sm tracking-wide leading-relaxed font-light uppercase">
+             <p className="flex-1 text-bone/60 max-w-sm text-sm tracking-wide leading-relaxed font-light text-small-caps uppercase">
                 Kami menggunakan standar toleransi milimeter untuk memastikan setiap furnitur tidak hanya indah secara visual, tapi juga stabil secara struktural untuk waktu yang sangat lama.
              </p>
           </div>
@@ -111,7 +111,7 @@ export default function StudioPage() {
              viewport={{ once: true }}
            >
              <h2 className="text-gr-5 font-serif uppercase mb-gr-4 leading-[0.9]">Keaslian yang <br /> Bertanggung Jawab.</h2>
-             <p className="text-earth-deep/60 mb-gr-6 text-lg max-w-2xl mx-auto">
+             <p className="text-earth-deep/80 text-narrative mb-gr-6 text-xl max-w-2xl mx-auto italic">
                 Semua kayu kami berasal dari hutan berkelanjutan bersertifikat SVLK, memastikan setiap mahakarya dikerjakan dengan menghormati ekosistem asalnya.
              </p>
              <button className="bg-charcoal text-bone px-gr-8 py-gr-4 text-[0.6rem] tracking-[0.6em] font-bold uppercase hover:bg-gold-muted hover:text-earth-deep transition-all shadow-2xl">
