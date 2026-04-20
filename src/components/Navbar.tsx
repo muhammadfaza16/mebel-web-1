@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Linkedin } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showMoreOverlay, setShowMoreOverlay] = useState(false);
   const pathname = usePathname();
 
   // Pages that start with a dark hero section
@@ -57,8 +58,8 @@ export default function Navbar() {
                </button>
             </div>
             
-            <nav className="flex-1 flex flex-col justify-center gap-sp-2">
-               {navLinks.map((link, i) => (
+            <nav className="flex-1 flex flex-col justify-center gap-sp-2 mt-[10vh]">
+               {(showMoreOverlay ? navLinks : navLinks.slice(0, 4)).map((link, i) => (
                  <motion.div 
                   key={link.name}
                   initial={{ opacity: 0, x: 20 }}
@@ -71,16 +72,42 @@ export default function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className="flex items-end gap-sp-2"
                     >
-                      <span className="text-[10px] pb-2 text-brand-text-muted">0{i+1}</span>
-                      <span className="text-4xl md:text-5xl lg:text-7xl font-serif text-brand-text hover:text-brand-terracotta hover:italic transition-colors duration-300 block">{link.name}</span>
+                      <span className="text-[10px] pb-1 text-brand-text-muted">0{i+1}</span>
+                      <span className="text-3xl md:text-5xl lg:text-7xl font-serif text-brand-text hover:text-brand-terracotta hover:italic transition-colors duration-300 block">{link.name}</span>
                     </Link>
                  </motion.div>
                ))}
+               
+               {!showMoreOverlay && (
+                 <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-4"
+                 >
+                    <button 
+                      onClick={() => setShowMoreOverlay(true)}
+                      className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 text-brand-text-muted hover:text-brand-terracotta transition-colors"
+                    >
+                      Explore More Lists <span className="text-lg">+</span>
+                    </button>
+                 </motion.div>
+               )}
             </nav>
             
-            <div className="pt-sp-4 flex justify-between items-end text-subheading">
-               <p className="opacity-60">Instagram / LinkedIn / Pinterest</p>
-               <p className="opacity-60">© 2026 Artisteak Jepara</p>
+            <div className="pt-sp-4 flex justify-between items-end text-xs tracking-wide">
+               <div className="flex gap-4 opacity-60">
+                 <a href="#" className="hover:text-brand-terracotta transition-colors"><Instagram size={18} strokeWidth={1.5} /></a>
+                 <a href="#" className="hover:text-brand-terracotta transition-colors"><Linkedin size={18} strokeWidth={1.5} /></a>
+                 {/* Generic SVG for Pinterest as lucide-react doesn't have it natively */}
+                 <a href="#" className="hover:text-brand-terracotta transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="8" x2="12" y2="21" />
+                      <path d="M12 8c0-3.3 2.7-6 6-6s6 2.7 6 6c0 3.1-2.4 5.7-5.5 6h-1" />
+                    </svg>
+                 </a>
+               </div>
+               <p className="opacity-60 normal-case">© 2026 Artisteak Jepara</p>
             </div>
           </motion.div>
         )}
@@ -121,17 +148,17 @@ export default function Navbar() {
               <span className={`text-[10px] tracking-[0.2em] font-medium mt-1 uppercase ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white/70"}`}>Jepara</span>
             </div>
           </Link>
-          <div className={`flex gap-sp-4 items-center text-subheading ${(scrolled || !isDarkHeroPage) ? "" : "text-white"}`}>
+          <div className={`flex gap-6 md:gap-8 items-center text-subheading tracking-wide ${(scrolled || !isDarkHeroPage) ? "" : "text-white"}`}>
             <Link href="/catalog" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Catalog</Link>
-            <Link href="/custom-order" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Custom Order</Link>
             <Link href="/journal" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>Journal</Link>
-            <Link href="/about" className={`hidden md:inline cursor-pointer hover:text-brand-terracotta transition-colors ${(scrolled || !isDarkHeroPage) ? "text-brand-text-muted" : "text-white"}`}>About</Link>
             
+            {/* Toggler / Expand the list */}
             <button 
               onClick={() => setIsOpen(true)}
-              className={`w-10 h-10 rounded-none border flex items-center justify-center hover:bg-brand-text hover:text-white transition-all cursor-pointer ml-2 ${(scrolled || !isDarkHeroPage) ? "border-brand-text/20" : "border-white/30"}`}
+              className={`group flex items-center gap-3 px-3 py-2 rounded-none border transition-all cursor-pointer ml-2 ${(scrolled || !isDarkHeroPage) ? "border-brand-text/20 hover:bg-brand-text hover:text-white" : "border-white/30 hover:bg-white hover:text-brand-dark-bg"}`}
             >
-              <Menu size={18} strokeWidth={1.5} className={(scrolled || !isDarkHeroPage) ? "text-brand-text" : "text-white"} />
+              <span className={`text-[10px] uppercase tracking-widest font-semibold hidden sm:inline ${(scrolled || !isDarkHeroPage) ? "text-brand-text group-hover:text-white" : "text-white group-hover:text-brand-dark-bg"}`}>Menu</span>
+              <Menu size={16} strokeWidth={1.5} className={(scrolled || !isDarkHeroPage) ? "text-brand-text group-hover:text-white" : "text-white group-hover:text-brand-dark-bg"} />
             </button>
           </div>
         </nav>
