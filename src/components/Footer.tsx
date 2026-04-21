@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Instagram, Globe, ArrowUpRight } from "lucide-react";
+import { Dot } from "./Ornament";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -34,7 +35,10 @@ export default function Footer() {
           
           {/* Navigation */}
           <div className="md:col-span-3">
-            <h4 className="text-[10px] tracking-[0.3em] font-bold uppercase text-white/70 mb-6">Discovery</h4>
+            <h4 className="text-[11px] tracking-[0.4em] font-bold uppercase text-white/70 mb-6 flex items-center gap-2">
+              <Dot className="w-1 h-1 bg-brand-terracotta" />
+              Discovery
+            </h4>
             <ul className="flex flex-col gap-4">
               <li><Link href="/catalog" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Catalog <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
               <li><Link href="/custom-order" className="text-sm text-brand-dark-text/90 hover:text-brand-terracotta transition-colors flex items-center group">Custom Order <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-1" /></Link></li>
@@ -46,13 +50,16 @@ export default function Footer() {
 
           {/* Contact / Studio */}
           <div className="md:col-span-3">
-            <h4 className="text-[10px] tracking-[0.3em] font-bold uppercase text-white mb-6">The Studio</h4>
+            <h4 className="text-[11px] tracking-[0.4em] font-bold uppercase text-white mb-6 flex items-center gap-2">
+              <Dot className="w-1 h-1 bg-brand-terracotta" />
+              The Studio
+            </h4>
             <div className="text-sm text-brand-dark-text space-y-4 font-normal leading-relaxed">
                <p><span className="text-white/50 font-bold uppercase text-[9px] tracking-widest">Jepara HQ:</span><br/>Jl. Pemuda No. 45, Jepara,<br/>Central Java, 59411</p>
                <p><span className="text-white/50 font-bold uppercase text-[9px] tracking-widest">Studio Representative:</span><br/>South Jakarta Sector 7</p>
                <button 
                  onClick={scrollToTop}
-                 className="mt-4 text-[10px] uppercase tracking-widest font-bold text-brand-terracotta hover:text-white transition-colors flex items-center gap-2"
+                 className="mt-4 text-[11px] uppercase tracking-[0.4em] font-bold text-brand-terracotta hover:text-white transition-colors flex items-center gap-2"
                >
                  Back to Top ↑
                </button>

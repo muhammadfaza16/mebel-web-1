@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight, ArrowLeft, Ruler } from "lucide-react";
 import { getProductById } from "@/lib/catalog-data";
+import { Dot } from "@/components/Ornament";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -96,7 +97,7 @@ export default function ProductDetailPage() {
         >
            <motion.div variants={fadeUp} className="mb-sp-6">
              <span className="flex items-center gap-2 text-[11px] uppercase font-semibold tracking-[0.4em] text-brand-terracotta mb-3 block">
-               <span className="w-1 h-1 bg-current rounded-full" />
+               <Dot className="w-1 h-1 bg-current" />
                {product.category}
              </span>
              <h1 className="text-4xl md:text-5xl text-brand-text mb-4 leading-tight">{product.name}</h1>
@@ -107,7 +108,7 @@ export default function ProductDetailPage() {
            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-sp-6">
              <span className="text-2xl font-serif text-brand-text mr-2">{product.price}</span>
              <span className="flex items-center gap-2 px-3 py-1.5 bg-brand-bg/90 backdrop-blur-sm border border-brand-text/10 text-brand-text text-[10px] uppercase font-bold tracking-[0.2em] shadow-sm">
-               <span className="w-1 h-1 bg-brand-terracotta rounded-full shadow-[0_0_5px_rgba(210,84,41,0.3)]" />
+               <Dot className="w-1 h-1 bg-brand-terracotta shadow-[0_0_5px_rgba(210,84,41,0.3)]" />
                Made to Order
              </span>
              {product.isNew && (
@@ -121,7 +122,7 @@ export default function ProductDetailPage() {
            <motion.div variants={fadeUp} className="mb-sp-6">
              <div className="flex justify-between items-end mb-4">
                <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text m-0">
-                 <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                 <Dot className="w-1 h-1 bg-brand-terracotta" />
                  Dimensions
                </h4>
                <span className="text-[10px] text-brand-text-muted uppercase tracking-[0.2em] flex items-center gap-1.5 cursor-pointer hover:text-brand-terracotta transition-colors font-bold">
@@ -145,12 +146,12 @@ export default function ProductDetailPage() {
              <p className="text-[9px] italic text-brand-text-muted mt-2 font-serif text-center">Custom dimensions available upon request.</p>
            </motion.div>
 
-           {/* Finishing Selection (Pattern) */}
-           <motion.div variants={fadeUp} className="mb-sp-8">
-             <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text mb-4">
-               <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
-               Wood Finish
-             </h4>
+            {/* Finishing Selection (Pattern) */}
+            <motion.div variants={fadeUp} className="mb-sp-8">
+              <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text mb-4">
+                <Dot className="w-1 h-1 bg-brand-terracotta" />
+                Wood Finish
+              </h4>
               <div className="flex gap-4 items-center">
                 {product.finishes.map((finish, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2 cursor-pointer group">

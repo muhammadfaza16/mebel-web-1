@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ChevronDown, ShieldCheck, Droplet, Sun, Wind } from "lucide-react";
+import { Dot } from "@/components/Ornament";
 
 export default function CarePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -15,15 +16,35 @@ export default function CarePage() {
     { q: "How long is the production lead time?", a: "Lead times vary by complexity. Standard catalog items usually ship within 4-6 weeks. Large-scale custom architectural projects may take 8-12 weeks depending on the seasoning required for the wood." }
   ];
 
+  const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
   return (
-    <main className="min-h-screen pt-24 bg-brand-bg">
+    <main className="min-h-screen pt-0 bg-brand-bg">
+      {/* 1. HERO STRIP (Consistent Layout) */}
+      <section className="bg-brand-dark-bg text-brand-dark-text pt-sp-16 pb-sp-8 px-4 md:px-sp-6 lg:px-sp-12">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-4xl">
+          <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-sp-4 block">
+            <Dot className="w-1 h-1 bg-brand-terracotta" />
+            Care & Intelligence
+          </span>
+          <h1 className="text-4xl md:text-6xl text-white mb-0 leading-tight">Expert guidance on <br /> nurturing your legacy.</h1>
+        </motion.div>
+      </section>
+
+      {/* 2. MAIN CONTENT GRID */}
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-screen border-t border-brand-text/10">
         
-        {/* LEFT: CARE GUIDE (Emphasis & Contrast) */}
+        {/* LEFT: CARE GUIDE */}
         <div className="border-r border-brand-text/10 p-4 md:p-sp-6 lg:p-sp-12 bg-brand-surface">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <span className="text-[10px] font-medium tracking-[0.3em] text-brand-text-muted uppercase mb-4 block">· Longevity Guide</span>
-            <h1 className="text-4xl md:text-5xl mb-8 leading-tight">Preserving <br/> Generations.</h1>
+          <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={{ once: true }}>
+            <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-sp-4 block">
+              <Dot className="w-1 h-1 bg-brand-terracotta" />
+              Longevity Guide
+            </span>
+            <h2 className="text-3xl md:text-4xl mb-sp-8 leading-tight">Preserving <br/> Generations.</h2>
             
             <div className="space-y-sp-8">
               <div className="flex gap-6">
@@ -56,20 +77,32 @@ export default function CarePage() {
                 </div>
               </div>
 
-              <div className="bg-brand-dark-bg p-8 card-hard text-brand-dark-text mt-sp-12">
-                 <ShieldCheck className="mb-4 text-brand-terracotta" size={32} />
-                 <h4 className="text-lg mb-2">The Artisteak Warranty</h4>
-                 <p className="text-sm text-brand-dark-text/70 mb-0">We provide a 5-year structural warranty on all joinery. Our pieces are engineered to last a lifetime, but we stand by the craftsmanship of every hand-carved joint.</p>
+               <div className="bg-brand-bg p-sp-6 border-l-4 border-brand-terracotta card-hard shadow-sm mt-sp-12 relative overflow-hidden group">
+                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <ShieldCheck size={80} />
+                 </div>
+                 <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                       <ShieldCheck className="text-brand-terracotta" size={24} />
+                       <h4 className="text-sm uppercase tracking-[0.3em] font-bold text-brand-text m-0">The Artisteak Warranty</h4>
+                    </div>
+                    <p className="text-[13px] text-brand-text-muted leading-relaxed mb-0 max-w-md">
+                      We provide a <span className="text-brand-text font-bold">5-year structural warranty</span> on all joinery. Our pieces are engineered to last a lifetime, standing by the craftsmanship of every hand-carved joint.
+                    </p>
+                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* RIGHT: FAQ (Hierarchy & Movement) */}
+        {/* RIGHT: FAQ */}
         <div className="p-4 md:p-sp-6 lg:p-sp-12">
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <span className="text-[10px] font-medium tracking-[0.3em] text-brand-text-muted uppercase mb-4 block">· Common Inquiries</span>
-            <h2 className="mb-12">Frequently Asked Questions.</h2>
+          <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={{ once: true }}>
+            <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-sp-4 block">
+              <Dot className="w-1 h-1 bg-brand-terracotta" />
+              Common Inquiries
+            </span>
+            <h2 className="text-3xl md:text-4xl mb-sp-8 leading-tight">Frequently Asked Questions.</h2>
             
             <div className="space-y-0">
                {faqs.map((faq, index) => (

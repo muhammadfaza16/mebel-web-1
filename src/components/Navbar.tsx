@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import { Dot } from "./Ornament";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +62,7 @@ export default function Navbar() {
             
             {/* Main Primary Links (Decisive & Bold) */}
             <nav className="flex-1 flex flex-col justify-center gap-sp-2 mt-[5vh]">
-               {navLinks.filter(link => !['Home', 'Care & FAQ'].includes(link.name)).map((link, i) => (
+               {navLinks.filter(link => link.name !== 'Home').map((link, i) => (
                  <motion.div 
                   key={link.name}
                   initial={{ opacity: 0, x: 20 }}
@@ -75,38 +76,25 @@ export default function Navbar() {
                       className="flex items-end gap-sp-2"
                     >
                       <span className="text-[10px] pb-1.5 text-brand-terracotta font-bold">0{i+1}</span>
-                      <span className="text-4xl md:text-6xl font-serif text-brand-text hover:text-brand-terracotta hover:italic transition-all duration-500 block">{link.name}</span>
+                      <span className="text-3xl md:text-5xl font-serif text-brand-text hover:text-brand-terracotta hover:italic transition-all duration-500 block">{link.name}</span>
                     </Link>
                  </motion.div>
                ))}
             </nav>
             
-            {/* Secondary Resources & Socials */}
-            <div className="pt-sp-8 flex flex-col gap-8">
-               <div className="flex flex-col gap-4 border-t border-brand-text/5 pt-sp-4">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-brand-text-muted font-bold">Support & Legal</span>
-                  <Link 
-                    href="/care" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-sm font-semibold tracking-wide hover:text-brand-terracotta transition-colors flex items-center gap-2"
-                  >
-                    Care & FAQ <ArrowRight size={14} className="opacity-40" />
-                  </Link>
-               </div>
-
-               <div className="flex justify-between items-end text-[10px] tracking-widest font-semibold uppercase">
-                  <div className="flex gap-6 text-brand-text-muted">
-                    <a href="#" className="hover:text-brand-terracotta transition-colors flex items-center gap-2">
-                       <span className="w-1 h-1 bg-current rounded-full" /> IG
-                    </a>
-                    <a href="#" className="hover:text-brand-terracotta transition-colors flex items-center gap-2">
-                       <span className="w-1 h-1 bg-current rounded-full" /> LI
-                    </a>
-                    <a href="#" className="hover:text-brand-terracotta transition-colors flex items-center gap-2">
-                       <span className="w-1 h-1 bg-current rounded-full" /> PN
+            {/* Socials & Legal Footer */}
+            <div className="pt-sp-8 flex flex-col gap-6">
+               <div className="flex justify-between items-center text-brand-text-muted">
+                  <div className="flex gap-sp-6 border-brand-text/10 pt-2 pb-4">
+                    <a href="#" className="hover:text-brand-terracotta transition-colors"><Instagram size={20} strokeWidth={1.5} /></a>
+                    <a href="#" className="hover:text-brand-terracotta transition-colors"><Linkedin size={20} strokeWidth={1.5} /></a>
+                    <a href="#" className="hover:text-brand-terracotta transition-colors">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="8" x2="12" y2="21" />
+                        <path d="M12 8c0-3.3 2.7-6 6-6s6 2.7 6 6c0 3.1-2.4 5.7-5.5 6h-1" />
+                      </svg>
                     </a>
                   </div>
-                  <p className="text-brand-text-muted/40 normal-case font-medium">© 2026 Artisteak Jepara</p>
                </div>
             </div>
           </motion.div>
@@ -117,23 +105,23 @@ export default function Navbar() {
         (scrolled || !isDarkHeroPage) ? "-translate-y-8" : "translate-y-0"
       }`}>
         {/* Top Announcement Bar (Teracotta / Orange) */}
-        <div className="bg-brand-terracotta text-white py-2 relative z-[60] overflow-hidden">
-          <div className="whitespace-nowrap flex gap-sp-12 animate-marquee font-bold text-[11px] tracking-[0.4em] uppercase">
-            <span className="flex items-center gap-3 shrink-0">
-               <span className="w-1 h-1 bg-white rounded-full" /> 
+        <div className="bg-brand-terracotta text-white py-2 px-1 relative z-[60] overflow-hidden">
+          <div className="whitespace-nowrap flex gap-sp-12 animate-marquee font-bold text-[10px] tracking-[0.2em] uppercase">
+            <span className="flex items-center gap-2 shrink-0">
+               <Dot className="w-1.5 h-1.5 bg-white" /> 
                Architectural Bespoke Furniture — From Jepara to the World
             </span>
-            <span className="flex items-center gap-3 shrink-0">
-               <span className="w-1 h-1 bg-white rounded-full" /> 
+            <span className="flex items-center gap-2 shrink-0">
+               <Dot className="w-1.5 h-1.5 bg-white" /> 
                Sustainability Certified Solid Teak 100%
             </span>
             {/* Duplicates for seamless loop */}
-            <span className="flex items-center gap-3 shrink-0">
-               <span className="w-1 h-1 bg-white rounded-full" /> 
+            <span className="flex items-center gap-2 shrink-0">
+               <Dot className="w-1.5 h-1.5 bg-white" /> 
                Architectural Bespoke Furniture — From Jepara to the World
             </span>
-            <span className="flex items-center gap-3 shrink-0">
-               <span className="w-1 h-1 bg-white rounded-full" /> 
+            <span className="flex items-center gap-2 shrink-0">
+               <Dot className="w-1.5 h-1.5 bg-white" /> 
                Sustainability Certified Solid Teak 100%
             </span>
           </div>

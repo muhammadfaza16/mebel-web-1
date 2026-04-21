@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Dot } from "@/components/Ornament";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
         <div className="relative z-10 w-full px-4 md:px-sp-6 lg:px-sp-12 mt-16">
           <div className="max-w-3xl">
             <span className="flex items-center gap-2 text-[11px] tracking-[0.4em] uppercase text-white/90 mb-8 font-semibold">
-              <span className="w-1.5 h-1.5 bg-brand-terracotta rounded-full shadow-[0_0_8px_rgba(210,84,41,0.4)]" /> Jepara, Indonesia
+              <Dot className="w-1.5 h-1.5 bg-brand-terracotta shadow-[0_0_8px_rgba(210,84,41,0.4)]" /> Jepara, Indonesia
             </span>
             <h1 className="text-white mb-sp-3 leading-[1.05] drop-shadow-lg">
               Furniture <br /> Built to <br /> Last Centuries.
@@ -56,7 +57,7 @@ export default function Home() {
                 className="mb-8"
               >
                 <span className="flex items-center gap-2 text-[11px] tracking-[0.4em] uppercase text-brand-terracotta font-semibold mb-sp-4">
-                  <span className="w-1 h-1 bg-current rounded-full" />
+                  <Dot className="w-1 h-1 bg-current" />
                   Our Ethos
                 </span>
                 <h2 className="text-brand-text leading-[1.2] text-4xl md:text-5xl lg:text-[64px] tracking-tight">
@@ -127,7 +128,7 @@ export default function Home() {
              <Image src="/assets/artisteak_workshop_hero.png" alt="Lounge" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
              <div className="absolute bottom-6 left-6 z-20">
                 <span className="flex items-center gap-2 bg-brand-bg/90 backdrop-blur-sm text-brand-text px-3 py-1.5 text-[10px] uppercase font-semibold tracking-[0.2em] mb-3 inline-block shadow-sm">
-                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  <Dot className="w-1 h-1 bg-brand-terracotta" />
                   Living space
                 </span>
                 <h4 className="text-white text-3xl m-0 drop-shadow-sm">The Kalpataru Lounge</h4>
@@ -144,7 +145,7 @@ export default function Home() {
                 <Image src="/assets/artisteak_artisan_hands.png" alt="Dining" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-700" />
                 <div className="relative z-20">
                   <span className="flex items-center gap-2 bg-brand-terracotta text-white px-3 py-1.5 text-[10px] uppercase font-semibold tracking-[0.2em] mb-3 inline-block shadow-sm">
-                    <span className="w-1 h-1 bg-white rounded-full" />
+                    <Dot className="w-1 h-1 bg-white" />
                     Dining
                   </span>
                    <h4 className="text-white text-xl m-0">Heritage Table</h4>
@@ -154,7 +155,7 @@ export default function Home() {
              <Link href="/catalog" className="card-hard flex-1 px-6 py-sp-4 flex flex-col justify-center relative overflow-hidden group border-brand-text/10 bg-brand-bg">
                 <div className="relative z-20">
                   <span className="flex items-center gap-2 text-brand-terracotta text-[10px] uppercase font-bold tracking-[0.3em] mb-2 block">
-                    <span className="w-1 h-1 bg-current rounded-full" />
+                    <Dot className="w-1 h-1 bg-current" />
                     New Arrival
                   </span>
                   <h4 className="text-brand-text text-xl m-0 leading-tight">Masterpiece<br/>Edition 2026</h4>
@@ -185,7 +186,7 @@ export default function Home() {
           {/* Stats Right */}
           <div className="bg-brand-dark-bg text-white py-sp-8 px-8 lg:px-sp-12 flex flex-col justify-center">
              <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-white/50 uppercase mb-sp-6 block">
-               <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+               <Dot className="w-1 h-1 bg-brand-terracotta" />
                Our Scale
              </span>
              
@@ -215,7 +216,7 @@ export default function Home() {
       <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface">
         <div className="max-w-5xl mx-auto">
           <span className="flex items-center justify-center md:justify-start gap-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-brand-text-muted mb-sp-6 block">
-            <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+            <Dot className="w-1 h-1 bg-brand-terracotta" />
             The Artisteak Standard
           </span>
           
@@ -261,7 +262,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-end mb-sp-8">
            <div>
               <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
-                <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                <Dot className="w-1 h-1 bg-brand-terracotta" />
                 Insights & Education
               </span>
               <h2 className="text-4xl md:text-5xl text-brand-text leading-tight">The Journal.</h2>

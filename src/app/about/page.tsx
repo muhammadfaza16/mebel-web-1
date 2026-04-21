@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { Dot } from "@/components/Ornament";
 
 export default function AboutPage() {
   const artisans = [
@@ -26,7 +27,7 @@ export default function AboutPage() {
       <section className="bg-brand-dark-bg text-brand-dark-text pt-sp-16 pb-sp-16 px-4 text-center">
         <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }} className="max-w-4xl mx-auto">
           <span className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-terracotta uppercase mb-8 block">
-            <span className="w-1 h-1 bg-current rounded-full" />
+            <Dot className="w-1 h-1 bg-current" />
             Our Manifesto
           </span>
           <h1 className="text-4xl md:text-7xl text-white mb-8 font-serif leading-[1.1]">The soul of Teak. <br/> The hands of Jepara.</h1>
@@ -44,7 +45,7 @@ export default function AboutPage() {
         <div className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-16 flex flex-col justify-center bg-brand-surface">
           <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }}>
             <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
-              <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+              <Dot className="w-1 h-1 bg-brand-terracotta" />
               Our Roots
             </span>
             <h2 className="mb-6 leading-[1.2] text-4xl">Established in <span className="font-serif italic text-brand-terracotta">1998</span>,<br/>driven by heritage.</h2>
@@ -70,7 +71,7 @@ export default function AboutPage() {
       <section className="py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg border-t border-brand-text/10">
         <div className="text-center mb-sp-8">
            <span className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
-             <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+             <Dot className="w-1 h-1 bg-brand-terracotta" />
              The People
            </span>
            <h2 className="font-serif text-4xl md:text-5xl">The hands behind the craft.</h2>
@@ -88,7 +89,7 @@ export default function AboutPage() {
               </div>
               <div className="p-6">
                 <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-brand-terracotta font-bold mb-3 block">
-                  <span className="w-1 h-1 bg-current rounded-full" />
+                  <Dot className="w-1 h-1 bg-current" />
                   {artisan.role}
                 </span>
                 <h4 className="text-xl mb-3 text-brand-text">{artisan.name}</h4>

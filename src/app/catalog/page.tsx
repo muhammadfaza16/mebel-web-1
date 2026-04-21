@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, ChevronDown, Filter } from "lucide-react";
+import { Dot } from "@/components/Ornament";
 
 import { catalogProducts as products } from "@/lib/catalog-data";
 
@@ -50,7 +51,7 @@ export default function CatalogPage() {
       <section className="bg-brand-dark-bg text-brand-dark-text pt-sp-16 pb-sp-8 px-4 md:px-sp-6 lg:px-sp-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-4xl">
           <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-sp-4 block">
-            <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+            <Dot className="w-1 h-1 bg-brand-terracotta" />
             Complete Collection
           </span>
           <h1 className="text-4xl md:text-6xl text-white mb-0 leading-tight">Archetypes of<br />Javanese modernism.</h1>
@@ -77,7 +78,7 @@ export default function CatalogPage() {
               <div>
                 <div className="flex justify-between items-center mb-sp-3">
                   <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text">
-                    <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                    <Dot className="w-1 h-1 bg-brand-terracotta" />
                     Rooms
                   </h4>
                   {(selectedRoom || selectedMaterial) && (
@@ -112,7 +113,7 @@ export default function CatalogPage() {
               {/* Filter Group: Material */}
               <div>
                 <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold mb-sp-3 text-brand-text">
-                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  <Dot className="w-1 h-1 bg-brand-terracotta" />
                   Material
                 </h4>
                 <div className="flex flex-col gap-3">
@@ -138,7 +139,7 @@ export default function CatalogPage() {
               {/* Slider Representation */}
               <div>
                 <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold mb-sp-3 text-brand-text">
-                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  <Dot className="w-1 h-1 bg-brand-terracotta" />
                   Price Range
                 </h4>
                 <div className="relative h-1 bg-brand-text/10 w-full mb-4">
@@ -182,7 +183,7 @@ export default function CatalogPage() {
                     
                     {/* Badge */}
                       <div className="absolute top-3 right-3 z-20 bg-brand-bg/90 backdrop-blur-sm text-brand-terracotta px-2 py-1.5 text-[10px] uppercase font-bold tracking-[0.2em] flex items-center gap-2 shadow-sm">
-                        <span className="w-1 h-1 bg-current rounded-full" />
+                        <Dot className="w-1 h-1 bg-current" />
                         New Edition
                       </div>
                     
@@ -201,7 +202,7 @@ export default function CatalogPage() {
                     {/* Text Details */}
                     <div className="p-5 flex flex-col flex-1">
                        <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-brand-text-muted mb-3 font-semibold">
-                         <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                         <Dot className="w-1 h-1 bg-brand-terracotta" />
                          {p.category}
                        </span>
                        <h4 className="text-xl md:text-2xl mb-1 text-brand-text group-hover:text-brand-terracotta transition-colors">{p.name}</h4>
