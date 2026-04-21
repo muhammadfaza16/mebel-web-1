@@ -25,7 +25,10 @@ export default function AboutPage() {
       {/* 1. MANIFESTO HERO (Contrast & Emphasis) */}
       <section className="bg-brand-dark-bg text-brand-dark-text pt-sp-16 pb-sp-16 px-4 text-center">
         <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }} className="max-w-4xl mx-auto">
-          <span className="text-[10px] font-medium tracking-[0.3em] text-brand-terracotta uppercase mb-6 block">· Our Manifesto</span>
+          <span className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-terracotta uppercase mb-8 block">
+            <span className="w-1 h-1 bg-current rounded-full" />
+            Our Manifesto
+          </span>
           <h1 className="text-4xl md:text-7xl text-white mb-8 font-serif leading-[1.1]">The soul of Teak. <br/> The hands of Jepara.</h1>
           <p className="text-lg md:text-2xl text-brand-dark-text/70 leading-relaxed font-light max-w-3xl mx-auto">
             We don't just sell furniture. We preserve an <span className="font-serif italic text-white/90">ancestral rhythm</span> of creation that has existed for centuries in the forests of Java.
@@ -40,7 +43,10 @@ export default function AboutPage() {
         </div>
         <div className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-16 flex flex-col justify-center bg-brand-surface">
           <motion.div initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }}>
-            <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· Our Roots</span>
+            <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
+              <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+              Our Roots
+            </span>
             <h2 className="mb-6 leading-[1.2] text-4xl">Established in <span className="font-serif italic text-brand-terracotta">1998</span>,<br/>driven by heritage.</h2>
             <p className="mb-sp-6 text-brand-text-muted leading-relaxed text-lg">
               Artisteak Jepara was born from a desire to bridge the gap between world-class engineering and traditional Javanese woodcraft. What started as a small workshop near the Teak forests of Central Java has evolved into a global architectural partner.
@@ -48,12 +54,12 @@ export default function AboutPage() {
             <div className="flex gap-sp-6 items-center">
                <div className="text-center">
                  <div className="text-4xl font-serif text-brand-text mb-1">25+</div>
-                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted font-bold">Years of Mastery</div>
+                 <div className="text-[10px] uppercase tracking-[0.3em] text-brand-text-muted font-bold">Years of Mastery</div>
                </div>
                <div className="h-10 w-px bg-brand-text/10" />
                <div className="text-center">
                  <div className="text-4xl font-serif text-brand-text mb-1">200</div>
-                 <div className="text-[9px] uppercase tracking-widest text-brand-text-muted font-bold">Local Artisans</div>
+                 <div className="text-[10px] uppercase tracking-[0.3em] text-brand-text-muted font-bold">Local Artisans</div>
                </div>
             </div>
           </motion.div>
@@ -63,7 +69,10 @@ export default function AboutPage() {
       {/* 3. MEET THE MAKERS (Pattern & Variety) */}
       <section className="py-sp-16 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg border-t border-brand-text/10">
         <div className="text-center mb-sp-8">
-           <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· The People</span>
+           <span className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
+             <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+             The People
+           </span>
            <h2 className="font-serif text-4xl md:text-5xl">The hands behind the craft.</h2>
         </div>
         
@@ -78,7 +87,10 @@ export default function AboutPage() {
                 <Image src={artisan.img} alt={artisan.name} fill className="object-cover transition-all duration-700 group-hover:scale-110" />
               </div>
               <div className="p-6">
-                <span className="text-[9px] uppercase tracking-widest text-brand-terracotta font-bold mb-2 block">{artisan.role}</span>
+                <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-brand-terracotta font-bold mb-3 block">
+                  <span className="w-1 h-1 bg-current rounded-full" />
+                  {artisan.role}
+                </span>
                 <h4 className="text-xl mb-3 text-brand-text">{artisan.name}</h4>
                 <p className="text-xs text-brand-text-muted leading-relaxed line-clamp-3">{artisan.bio}</p>
               </div>

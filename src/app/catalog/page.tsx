@@ -49,7 +49,10 @@ export default function CatalogPage() {
       {/* HERO STRIP (Contrast & Emphasis) */}
       <section className="bg-brand-dark-bg text-brand-dark-text pt-sp-16 pb-sp-8 px-4 md:px-sp-6 lg:px-sp-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-4xl">
-          <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· Complete Collection</span>
+          <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-sp-4 block">
+            <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+            Complete Collection
+          </span>
           <h1 className="text-4xl md:text-6xl text-white mb-0 leading-tight">Archetypes of<br />Javanese modernism.</h1>
         </motion.div>
       </section>
@@ -73,7 +76,10 @@ export default function CatalogPage() {
               {/* Filter Group: Room */}
               <div>
                 <div className="flex justify-between items-center mb-sp-3">
-                  <h4 className="text-xs uppercase tracking-widest font-medium text-brand-text">Rooms</h4>
+                  <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text">
+                    <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                    Rooms
+                  </h4>
                   {(selectedRoom || selectedMaterial) && (
                     <button 
                       onClick={clearFilters}
@@ -105,7 +111,10 @@ export default function CatalogPage() {
 
               {/* Filter Group: Material */}
               <div>
-                <h4 className="text-xs uppercase tracking-widest font-medium mb-sp-3 text-brand-text">Material</h4>
+                <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold mb-sp-3 text-brand-text">
+                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  Material
+                </h4>
                 <div className="flex flex-col gap-3">
                   {materials.map((mat) => (
                     <label 
@@ -128,7 +137,10 @@ export default function CatalogPage() {
 
               {/* Slider Representation */}
               <div>
-                <h4 className="text-xs uppercase tracking-widest font-medium mb-sp-3 text-brand-text">Price Range</h4>
+                <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold mb-sp-3 text-brand-text">
+                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  Price Range
+                </h4>
                 <div className="relative h-1 bg-brand-text/10 w-full mb-4">
                    <div className="absolute left-[20%] right-[30%] h-full bg-brand-text"></div>
                    <div className="absolute left-[20%] -mt-1 w-3 h-3 bg-brand-text border border-brand-bg" />
@@ -169,11 +181,10 @@ export default function CatalogPage() {
                   <Link href={`/catalog/${p.id}`} className="block card-hard bg-brand-bg group cursor-pointer relative h-full flex flex-col">
                     
                     {/* Badge */}
-                    {p.isNew && (
-                      <div className="absolute top-3 right-3 z-20 bg-brand-terracotta text-white px-2 py-1 text-[9px] uppercase tracking-widest">
+                      <div className="absolute top-3 right-3 z-20 bg-brand-bg/90 backdrop-blur-sm text-brand-terracotta px-2 py-1.5 text-[10px] uppercase font-bold tracking-[0.2em] flex items-center gap-2 shadow-sm">
+                        <span className="w-1 h-1 bg-current rounded-full" />
                         New Edition
                       </div>
-                    )}
                     
                     {/* Image Area */}
                     <div className="relative h-64 md:h-80 w-full overflow-hidden border-b border-brand-text/5 bg-brand-surface">
@@ -189,7 +200,10 @@ export default function CatalogPage() {
                     
                     {/* Text Details */}
                     <div className="p-5 flex flex-col flex-1">
-                       <span className="text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-medium">{p.category}</span>
+                       <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-brand-text-muted mb-3 font-semibold">
+                         <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                         {p.category}
+                       </span>
                        <h4 className="text-xl md:text-2xl mb-1 text-brand-text group-hover:text-brand-terracotta transition-colors">{p.name}</h4>
                        <span className="text-xs text-brand-text-muted mb-4 block italic font-serif opacity-80">{p.material}</span>
                        
@@ -212,7 +226,7 @@ export default function CatalogPage() {
                     </div>
                     <h4 className="text-2xl mb-2">Bespoke Design</h4>
                     <p className="text-sm text-brand-text-muted max-w-[200px] mx-auto mb-sp-4">Have an architectural vision? We can craft it.</p>
-                    <Link href="/custom-order" className="text-[10px] uppercase tracking-widest border-b border-brand-text pb-1 hover:text-brand-terracotta transition-colors">
+                    <Link href="/custom-order" className="text-[11px] uppercase tracking-[0.3em] font-semibold border-b border-brand-text pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-all">
                       Start Custom Order
                     </Link>
                  </div>

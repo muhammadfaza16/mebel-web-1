@@ -37,12 +37,12 @@ export default function ProductDetailPage() {
   return (
     <main className="min-h-screen pt-24 pb-sp-12 bg-brand-bg">
       {/* BREADCRUMB (Hierarchy) */}
-      <div className="px-4 md:px-sp-6 lg:px-sp-12 py-3 border-b border-brand-text/10 flex items-center gap-2 text-[10px] uppercase tracking-widest font-medium text-brand-text-muted">
-         <Link href="/catalog" className="hover:text-brand-text transition-colors">Catalog</Link>
-         <span>/</span>
-         <span className="text-brand-text">{product.category}</span>
-         <span>/</span>
-         <span className="text-brand-text border-b border-brand-text pb-[1px]">{product.name}</span>
+      <div className="px-4 md:px-sp-6 lg:px-sp-12 py-4 border-b border-brand-text/10 flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text-muted overflow-x-auto whitespace-nowrap">
+         <Link href="/catalog" className="hover:text-brand-terracotta transition-colors">Catalog</Link>
+         <span className="text-[14px] text-brand-text/20 leading-none">/</span>
+         <span className="text-brand-text-muted/60">{product.category}</span>
+         <span className="text-[14px] text-brand-text/20 leading-none">/</span>
+         <span className="text-brand-text border-b border-brand-terracotta/40 pb-0.5">{product.name}</span>
       </div>
 
       {/* MAIN SPLIT (Balance & Proportion) */}
@@ -95,17 +95,23 @@ export default function ProductDetailPage() {
           className="lg:col-span-5 p-4 md:p-sp-6 lg:p-sp-8 flex flex-col"
         >
            <motion.div variants={fadeUp} className="mb-sp-6">
-             <span className="text-[10px] uppercase font-semibold tracking-widest text-brand-text-muted mb-2 block">{product.category}</span>
+             <span className="flex items-center gap-2 text-[11px] uppercase font-semibold tracking-[0.4em] text-brand-terracotta mb-3 block">
+               <span className="w-1 h-1 bg-current rounded-full" />
+               {product.category}
+             </span>
              <h1 className="text-4xl md:text-5xl text-brand-text mb-4 leading-tight">{product.name}</h1>
              <p className="text-brand-text-muted text-lg">{product.fullDescription}</p>
            </motion.div>
            
            {/* Price & Badge */}
-           <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-sp-6">
-             <span className="text-2xl font-serif text-brand-text">{product.price}</span>
-             <span className="px-3 py-1 bg-brand-terracotta text-white text-[9px] uppercase tracking-widest">Made to Order</span>
+           <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-sp-6">
+             <span className="text-2xl font-serif text-brand-text mr-2">{product.price}</span>
+             <span className="flex items-center gap-2 px-3 py-1.5 bg-brand-bg/90 backdrop-blur-sm border border-brand-text/10 text-brand-text text-[10px] uppercase font-bold tracking-[0.2em] shadow-sm">
+               <span className="w-1 h-1 bg-brand-terracotta rounded-full shadow-[0_0_5px_rgba(210,84,41,0.3)]" />
+               Made to Order
+             </span>
              {product.isNew && (
-                <span className="px-3 py-1 border border-brand-terracotta text-brand-terracotta text-[9px] uppercase tracking-widest">New Arrival</span>
+                <span className="px-3 py-1.5 bg-brand-terracotta text-white text-[10px] uppercase font-bold tracking-[0.2em] shadow-sm">New Arrival</span>
              )}
            </motion.div>
 
@@ -114,22 +120,25 @@ export default function ProductDetailPage() {
            {/* Dimensions (Interactive input representation) */}
            <motion.div variants={fadeUp} className="mb-sp-6">
              <div className="flex justify-between items-end mb-4">
-               <h4 className="text-xs uppercase tracking-widest font-medium text-brand-text m-0">Dimensions</h4>
-               <span className="text-[9px] text-brand-text-muted uppercase flex items-center gap-1 cursor-pointer hover:text-brand-terracotta transition-colors">
-                 <Ruler size={10} /> View Size Guide
+               <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text m-0">
+                 <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                 Dimensions
+               </h4>
+               <span className="text-[10px] text-brand-text-muted uppercase tracking-[0.2em] flex items-center gap-1.5 cursor-pointer hover:text-brand-terracotta transition-colors font-bold">
+                 <Ruler size={12} /> Size Guide
                </span>
              </div>
              <div className="grid grid-cols-3 gap-3">
-                <div className="border border-brand-text/20 p-2 relative">
-                   <span className="text-[8px] text-brand-text-muted uppercase absolute top-1 left-2">Width</span>
+                <div className="border border-brand-text/10 bg-brand-bg/30 p-2 relative">
+                   <span className="text-[9px] text-brand-text-muted uppercase tracking-widest absolute top-1 left-2 font-bold scale-[0.8] origin-left">Width</span>
                    <div className="text-sm font-medium mt-3 text-center">{product.dimensions.width}</div>
                 </div>
-                <div className="border border-brand-text/20 p-2 relative">
-                   <span className="text-[8px] text-brand-text-muted uppercase absolute top-1 left-2">Depth</span>
+                <div className="border border-brand-text/10 bg-brand-bg/30 p-2 relative">
+                   <span className="text-[9px] text-brand-text-muted uppercase tracking-widest absolute top-1 left-2 font-bold scale-[0.8] origin-left">Depth</span>
                    <div className="text-sm font-medium mt-3 text-center">{product.dimensions.depth}</div>
                 </div>
-                <div className="border border-brand-text/20 p-2 relative text-brand-terracotta">
-                   <span className="text-[8px] uppercase absolute top-1 left-2">Height</span>
+                <div className="border border-brand-text/10 bg-brand-bg/30 p-2 relative text-brand-terracotta">
+                   <span className="text-[9px] uppercase tracking-widest absolute top-1 left-2 font-bold scale-[0.8] origin-left">Height</span>
                    <div className="text-sm font-medium mt-3 text-center">{product.dimensions.height}</div>
                 </div>
              </div>
@@ -138,7 +147,10 @@ export default function ProductDetailPage() {
 
            {/* Finishing Selection (Pattern) */}
            <motion.div variants={fadeUp} className="mb-sp-8">
-             <h4 className="text-xs uppercase tracking-widest font-medium text-brand-text mb-4">Wood Finish</h4>
+             <h4 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] font-semibold text-brand-text mb-4">
+               <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+               Wood Finish
+             </h4>
               <div className="flex gap-4 items-center">
                 {product.finishes.map((finish, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2 cursor-pointer group">
@@ -169,13 +181,16 @@ export default function ProductDetailPage() {
                <button 
                  key={tab}
                  onClick={() => setActiveTab(tab)}
-                 className={`px-6 py-5 text-[10px] uppercase font-semibold tracking-widest transition-colors whitespace-nowrap ${
+                 className={`px-6 py-5 text-[11px] uppercase font-bold tracking-[0.3em] transition-all whitespace-nowrap relative ${
                    activeTab === tab 
-                   ? "border-b-2 border-brand-text text-brand-text" 
+                   ? "text-brand-text" 
                    : "text-brand-text-muted hover:text-brand-text"
                  }`}
                >
                  {tab.replace('-', ' ')}
+                 {activeTab === tab && (
+                   <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-terracotta" />
+                 )}
                </button>
             ))}
          </div>

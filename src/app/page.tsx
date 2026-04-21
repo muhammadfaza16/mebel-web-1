@@ -26,8 +26,8 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 w-full px-4 md:px-sp-6 lg:px-sp-12 mt-16">
           <div className="max-w-3xl">
-            <span className="text-[10px] tracking-widest text-white/90 mb-6 uppercase flex items-center gap-2 font-medium">
-              <span className="w-1.5 h-1.5 bg-brand-terracotta rounded-full animate-pulse shadow-[0_0_8px_rgba(210,84,41,0.6)]" /> Jepara, Indonesia
+            <span className="flex items-center gap-2 text-[11px] tracking-[0.4em] uppercase text-white/90 mb-8 font-semibold">
+              <span className="w-1.5 h-1.5 bg-brand-terracotta rounded-full shadow-[0_0_8px_rgba(210,84,41,0.4)]" /> Jepara, Indonesia
             </span>
             <h1 className="text-white mb-sp-3 leading-[1.05] drop-shadow-lg">
               Furniture <br /> Built to <br /> Last Centuries.
@@ -55,7 +55,10 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="mb-8"
               >
-                <span className="text-[10px] tracking-[0.3em] uppercase text-brand-terracotta block font-bold mb-sp-4">· Our Ethos</span>
+                <span className="flex items-center gap-2 text-[11px] tracking-[0.4em] uppercase text-brand-terracotta font-semibold mb-sp-4">
+                  <span className="w-1 h-1 bg-current rounded-full" />
+                  Our Ethos
+                </span>
                 <h2 className="text-brand-text leading-[1.2] text-4xl md:text-5xl lg:text-[64px] tracking-tight">
                   Furniture isn't just what <br className="hidden lg:block" />
                   <span className="italic font-serif text-brand-text/60"> occupies</span> a room, <br className="hidden md:block" />
@@ -74,8 +77,8 @@ export default function Home() {
                 <p className="text-lg md:text-xl text-brand-text-muted font-light max-w-md leading-relaxed">
                   We seamlessly blend Javanese heritage with contemporary architectural lines, crafting not for the season, but for the century.
                 </p>
-                <Link href="/about" className="inline-block mt-8 text-[10px] uppercase tracking-widest font-bold border-b border-brand-text pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-colors">
-                  Discover Our Origins
+                <Link href="/about" className="inline-flex items-center gap-2 mt-10 text-[11px] uppercase tracking-[0.3em] font-semibold border-b border-brand-text/30 pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-all">
+                  Discover Our Origins <ArrowRight size={12} />
                 </Link>
               </motion.div>
             </div>
@@ -111,8 +114,8 @@ export default function Home() {
       <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface border-t border-brand-text/5 text-brand-text">
         <div className="flex justify-between items-center mb-sp-8 border-b border-brand-text/10 pb-4">
           <h3 className="m-0 text-3xl">Featured Collections</h3>
-          <Link href="/catalog" className="text-[10px] font-bold tracking-widest uppercase hover:text-brand-terracotta transition-colors flex items-center gap-2">
-            Explore All <ArrowRight size={14} />
+          <Link href="/catalog" className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.3em] uppercase hover:text-brand-terracotta transition-colors">
+            Explore All <ArrowRight size={14} strokeWidth={1.5} />
           </Link>
         </div>
         
@@ -123,7 +126,10 @@ export default function Home() {
              <div className="absolute inset-0 bg-brand-dark-bg/20 group-hover:bg-brand-dark-bg/0 transition-colors duration-700 z-10" />
              <Image src="/assets/artisteak_workshop_hero.png" alt="Lounge" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
              <div className="absolute bottom-6 left-6 z-20">
-                <span className="bg-brand-bg text-brand-text px-3 py-1 text-[9px] uppercase font-bold tracking-[0.2em] mb-2 inline-block">Living space</span>
+                <span className="flex items-center gap-2 bg-brand-bg/90 backdrop-blur-sm text-brand-text px-3 py-1.5 text-[10px] uppercase font-semibold tracking-[0.2em] mb-3 inline-block shadow-sm">
+                  <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                  Living space
+                </span>
                 <h4 className="text-white text-3xl m-0 drop-shadow-sm">The Kalpataru Lounge</h4>
              </div>
              <div className="absolute top-6 right-6 z-20 w-10 h-10 bg-brand-terracotta text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
@@ -137,14 +143,20 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark-bg/80 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
                 <Image src="/assets/artisteak_artisan_hands.png" alt="Dining" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-700" />
                 <div className="relative z-20">
-                  <span className="bg-brand-terracotta text-white px-3 py-1 text-[9px] uppercase font-bold tracking-[0.2em] mb-2 inline-block">Dining</span>
+                  <span className="flex items-center gap-2 bg-brand-terracotta text-white px-3 py-1.5 text-[10px] uppercase font-semibold tracking-[0.2em] mb-3 inline-block shadow-sm">
+                    <span className="w-1 h-1 bg-white rounded-full" />
+                    Dining
+                  </span>
                    <h4 className="text-white text-xl m-0">Heritage Table</h4>
                 </div>
              </Link>
              
              <Link href="/catalog" className="card-hard flex-1 px-6 py-sp-4 flex flex-col justify-center relative overflow-hidden group border-brand-text/10 bg-brand-bg">
                 <div className="relative z-20">
-                  <span className="text-brand-terracotta text-[9px] uppercase font-bold tracking-widest mb-1 block">New Arrival</span>
+                  <span className="flex items-center gap-2 text-brand-terracotta text-[10px] uppercase font-bold tracking-[0.3em] mb-2 block">
+                    <span className="w-1 h-1 bg-current rounded-full" />
+                    New Arrival
+                  </span>
                   <h4 className="text-brand-text text-xl m-0 leading-tight">Masterpiece<br/>Edition 2026</h4>
                   <div className="mt-4 text-[10px] font-bold uppercase tracking-widest border-b border-brand-text w-fit pb-1 group-hover:text-brand-terracotta group-hover:border-brand-terracotta transition-colors">
                     Explore
@@ -172,7 +184,10 @@ export default function Home() {
           
           {/* Stats Right */}
           <div className="bg-brand-dark-bg text-white py-sp-8 px-8 lg:px-sp-12 flex flex-col justify-center">
-             <span className="text-[10px] font-medium tracking-widest text-white/50 uppercase mb-sp-6 block">· Our Scale</span>
+             <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-white/50 uppercase mb-sp-6 block">
+               <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+               Our Scale
+             </span>
              
              <div className="flex flex-col">
                 <div className="border-b border-white/10 pb-6 mb-6">
@@ -199,7 +214,10 @@ export default function Home() {
       {/* THE ARTISTEAK STANDARD (Numbered List) */}
       <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-surface">
         <div className="max-w-5xl mx-auto">
-          <span className="text-[10px] font-medium uppercase tracking-widest text-brand-text-muted mb-sp-6 block text-center md:text-left">· The Artisteak Standard</span>
+          <span className="flex items-center justify-center md:justify-start gap-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-brand-text-muted mb-sp-6 block">
+            <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+            The Artisteak Standard
+          </span>
           
           <div className="flex flex-col">
             {/* Item 1 */}
@@ -242,7 +260,10 @@ export default function Home() {
       <section className="py-sp-12 px-4 md:px-sp-6 lg:px-sp-12 bg-brand-bg border-t border-brand-text/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-end mb-sp-8">
            <div>
-              <span className="text-[10px] font-medium tracking-widest text-brand-text-muted uppercase mb-4 block">· Insights & Education</span>
+              <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] text-brand-text-muted uppercase mb-4 block">
+                <span className="w-1 h-1 bg-brand-terracotta rounded-full" />
+                Insights & Education
+              </span>
               <h2 className="text-4xl md:text-5xl text-brand-text leading-tight">The Journal.</h2>
            </div>
            <Link href="/journal" className="hidden md:inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest border-b border-brand-text pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-colors">
